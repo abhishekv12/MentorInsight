@@ -1,0 +1,1790 @@
+/* --- GLOBAL VARIABLES & RESET --- */
+:root {
+    --primary-blue: #0060B6;
+    --primary-teal: #00A3E0;
+    --accent-green: #87D300;
+    --dark-text: #334155;
+    --light-text: #64748b;
+    --white: #ffffff;
+    --gradient-main: linear-gradient(135deg, #0060B6 15%, #00A3E0 60%, #87D300 100%);
+    --secondary-color: #0A2463;
+    --gradient-main: linear-gradient(135deg, #0060B6 0%, #00A3E0 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8faff;
+    color: var(--dark-text);
+    overflow-x: hidden;
+}
+
+/* --- NAVIGATION BAR --- */
+/* --- NAVIGATION BAR --- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 5%;
+  box-shadow: 0 4px 15px rgba(0, 96, 182, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- DROPDOWN CONTAINER --- */
+.dropdown-container {
+  position: relative; /* Crucial: Makes the menu stick to the button */
+}
+
+.btn-login {
+  background: var(--white);
+  color: var(--primary-blue) !important;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+.btn-login:hover {
+  transform: translateY(-3px);
+}
+
+.btn-login i {
+  font-size: 0.8rem;
+}
+
+/* --- THE DROPDOWN MENU (Pop-up Box) --- */
+.dropdown-menu-custom {
+  position: absolute;
+  top: 115%; /* Pushes it right below the button */
+  right: 0;
+  background: white;
+  width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000;
+  border: 1px solid rgba(0,0,0,0.05);
+  animation: slideIn 0.2s ease-out;
+}
+
+/* --- MENU ITEMS --- */
+.dropdown-item-custom {
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dropdown-item-custom:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item-custom:hover {
+  background: #f8fafc;
+  color: var(--primary-blue);
+}
+
+.dropdown-item-custom i {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+/* Smooth Animation */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- LOGGED IN USER --- */
+.user-info {
+  color: white;
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+.btn-logout {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-logout:hover {
+  background: white;
+  color: var(--primary-blue);
+}
+
+/* --- DROPDOWN STYLES (THE FIX) --- */
+.dropdown {
+    position: relative;
+    /* Crucial for floating menu */
+}
+
+.btn-login {
+    background: var(--white);
+    color: var(--primary-blue) !important;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+}
+
+/* The Hidden Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 110%;
+    /* Pushes it right below the button */
+    right: 0;
+    background: white;
+    width: 160px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.10s ease-in-out;
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background: #f1f5f9;
+    color: var(--primary-blue);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hamburger Menu Icon (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 10%;
+    min-height: 85vh;
+    position: relative;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--primary-teal);
+    top: -50px;
+    left: -50px;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-green);
+    bottom: 50px;
+    right: -100px;
+}
+
+.hero-text {
+    width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #0f172a;
+}
+
+.hero-text span {
+    background: -webkit-linear-gradient(0deg, #0060B6, #00A3E0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-primary {
+    padding: 15px 35px;
+    background: var(--gradient-main);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-secondary {
+    padding: 15px 35px;
+    background: white;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform: translateY(-3px);
+}
+
+.hero-image {
+    width: 45%;
+}
+
+.hero-image img {
+    width: 128%;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* --- FEATURES SECTION --- */
+.features {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    border-top: 5px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-top: 5px solid var(--accent-green);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card i {
+    font-size: 40px;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    background: #eef6ff;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* --- FOOTER --- */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.main-footer {
+    background-color: var(--secondary-color);
+    color: #A0AEC0;
+    padding: 4rem 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.footer-about .logo {
+    height: 50px;
+    margin-bottom: 1rem;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #A0AEC0;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    filter: grayscale(1) brightness(2);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.social-icons a:hover img {
+    opacity: 1;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #2D3748;
+    font-size: 0.9rem;
+}
+
+
+/* --- RESPONSIVE DESIGN (MOBILE) --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--primary-blue);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transform: translateY(-200%);
+        /* Hidden by default */
+        transition: 0.4s ease;
+        z-index: 999;
+    }
+
+    /* Class used by JS to show menu */
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .hero-text {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .hero-image {
+        width: 80%;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
+/* --- NEW SECTION: BOOK SHOWCASE --- */
+.book-showcase {
+    padding: 80px 5%;
+    background: linear-gradient(to bottom, #f8faff, #eef6ff);
+    /* Subtle gradient bg */
+}
+
+.container-book {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.book-interface {
+    display: flex;
+    /* This creates the modern glass-like box for the whole interface */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 96, 182, 0.1);
+    overflow: hidden;
+    /* Ensures children don't spill out of rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* -- Left Side Nav -- */
+.book-nav {
+    flex-basis: 35%;
+    /* Takes up 35% width */
+    background: #f1f7ff;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-right: 1px solid #e2e8f0;
+}
+
+.book-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-nav-item i {
+    color: var(--light-text);
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+/* Hover State for Nav Items */
+.book-nav-item:hover {
+    background: rgba(0, 96, 182, 0.05);
+    color: var(--primary-blue);
+}
+
+.book-nav-item:hover i {
+    color: var(--primary-blue);
+}
+
+/* Active State (Selected Item) */
+.book-nav-item.active {
+    background: var(--white);
+    color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--accent-green);
+    /* Little green indicator */
+}
+
+.book-nav-item.active i {
+    color: var(--primary-blue);
+}
+
+/* -- Right Side Content Panel -- */
+.book-content-panel {
+    flex-basis: 65%;
+    /* Takes up 65% width */
+    padding: 40px;
+    position: relative;
+    background: var(--white);
+    min-height: 400px;
+    /* Ensures consistent height */
+}
+
+/* The individual pages are hidden by default */
+.book-page {
+    display: none;
+    /* Animation Initialization */
+    opacity: 0;
+    transform: translateX(20px) scale(0.98);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Smooth easing */
+}
+
+/* The active page is displayed and animated in */
+.book-page.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.accent-icon {
+    font-size: 40px;
+    color: var(--primary-blue);
+    background: #eef6ff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 96, 182, 0.1);
+}
+
+.book-page h3 {
+    font-size: 1.8rem;
+    color: #0f172a;
+}
+
+.book-page p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* -- Mock UI Elements for visual flair -- */
+.mock-ui-strip {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: monospace;
+    color: var(--dark-text);
+    border: 1px solid #e2e8f0;
+}
+
+.mock-progress-container {
+    margin-top: 30px;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-green);
+    border-radius: 5px;
+}
+
+.progress-fill.blue {
+    background: var(--primary-blue);
+}
+
+
+/* -- Mobile Responsiveness for Book Section -- */
+@media (max-width: 900px) {
+    .book-interface {
+        flex-direction: column;
+        /* Stack vertically on tablets/phones */
+    }
+
+    .book-nav {
+        flex-basis: auto;
+        flex-direction: row;
+        /* Make nav items side-by-side on mobile */
+        overflow-x: auto;
+        /* Allow horizontal scrolling if many items */
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        gap: 10px;
+    }
+
+    .book-nav-item {
+        white-space: nowrap;
+        /* Keep button text on one line */
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .book-content-panel {
+        padding: 30px 20px;
+        min-height: auto;
+    }
+
+    .accent-icon {
+        padding: 15px;
+        font-size: 30px;
+    }
+
+    .book-page h3 {
+        font-size: 1.4rem;
+    }
+}
+
+/* --- EXCLUSIVE FEATURES BENTO GRID --- */
+.exclusive-features {
+    padding: 100px 5%;
+    background: #f8faff;
+    /* Clean background to let cards pop */
+    position: relative;
+}
+
+/* Optional background decoration for premium feel */
+.exclusive-features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(135, 211, 0, 0.1), transparent 60%);
+    pointer-events: none;
+}
+
+.features-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+
+.features-header h2 {
+    font-size: 2.8rem;
+    color: #0f172a;
+    margin-bottom: 20px;
+}
+
+.features-header p {
+    font-size: 1.2rem;
+    color: var(--light-text);
+}
+
+/* --- The Grid Layout --- */
+.bento-grid {
+    display: grid;
+    /* Create a 4-column grid */
+    grid-template-columns: repeat(4, 1fr);
+    /* Define default row height */
+    grid-auto-rows: minmax(180px, auto);
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Utility classes for spanning rows/columns */
+.grid-col-span-2 {
+    grid-column: span 2;
+}
+
+.grid-row-span-2 {
+    grid-row: span 2;
+}
+
+/* --- Base Card Styling --- */
+.bento-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy transition */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Premium Hover Effect */
+.bento-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 96, 182, 0.15);
+    border-color: var(--primary-blue);
+}
+
+/* Typography inside cards */
+.bento-card h3,
+.bento-card h4 {
+    color: #0f172a;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bento-card p {
+    color: var(--light-text);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.accent-icon {
+    color: var(--primary-blue);
+    background: #eef6ff;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+
+/* --- Specific Card Customizations --- */
+
+/* Card 1: Main Performance (The Big One) */
+.main-performance {
+    background: linear-gradient(145deg, #ffffff, #f0f7ff);
+}
+
+.main-performance .card-content {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-performance .card-txt {
+    width: 45%;
+}
+
+/* Mock Chart Styling */
+.mock-chart-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    height: 150px;
+    border-bottom: 2px solid #e2e8f0;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bar {
+    flex: 1;
+    background: #cbd5e1;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: height 1s ease;
+}
+
+.bar.active {
+    background: var(--accent-green);
+    box-shadow: 0 0 20px rgba(135, 211, 0, 0.4);
+}
+
+.bar span {
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--light-text);
+}
+
+.chart-label {
+    font-weight: 700;
+    color: var(--accent-green);
+}
+
+/* Card 2: Objective */
+.objective-card .card-content.horizontal {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    height: 100%;
+}
+
+.accent-icon.large {
+    font-size: 2.5rem;
+    padding: 20px;
+}
+
+/* Cards 3 & 4: Profile & Parents */
+.profile-card {
+    justify-content: center;
+    background: linear-gradient(145deg, #ffffff, #f5faff);
+}
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-preview i {
+    font-size: 2rem;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.profile-info h4 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.profile-info span {
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+/* Card 5: Records */
+.records-card {
+    justify-content: center;
+}
+
+.mini-tags {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.mini-tags span {
+    background: #eef6ff;
+    color: var(--primary-blue);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Card 6: Hobbies */
+.hobbies-card {
+    background: linear-gradient(145deg, #ffffff, #fafff0);
+    /* Slight green tint */
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* --- Responsive Breakpoints --- */
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2x2 grid on tablets */
+    }
+
+    .main-performance .card-content {
+        flex-direction: column;
+    }
+
+    .main-performance .card-txt,
+    .mock-chart-container {
+        width: 100%;
+    }
+
+    .mock-chart-container {
+        margin-top: 30px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-header h2 {
+        font-size: 2rem;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr;
+        /* Stack everything on mobile */
+    }
+
+    /* Reset spans on mobile so everything is 1 column wide */
+    .grid-col-span-2,
+    .grid-row-span-2 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .bento-card {
+        min-height: auto;
+    }
+}
+
+/* --- New Bento Card Styles --- */
+
+/* Utility classes for alignment */
+.align-center {
+    align-items: center;
+}
+
+/* Card 7: Session Card */
+.session-card {
+    background: linear-gradient(to right, #ffffff, #eef6ff);
+}
+
+.date-badge {
+    background: var(--primary-blue);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 70px;
+}
+
+.date-badge .month {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.date-badge .day {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.session-details {
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.session-details h3 {
+    margin-bottom: 5px !important;
+}
+
+.session-details p {
+    margin-bottom: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.topic-tag {
+    background: #e2e8f0;
+    color: var(--dark-text);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.btn-join {
+    background: var(--accent-green);
+    color: #0f172a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.btn-join:hover {
+    transform: scale(1.05);
+    background: #97eb00;
+    box-shadow: 0 5px 15px rgba(135, 211, 0, 0.3);
+}
+
+
+/* Card 8: Skills Matrix */
+.skills-card {
+    background: linear-gradient(160deg, #ffffff, #f0f4ff);
+}
+
+.skills-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.skill-score {
+    color: var(--primary-blue);
+}
+
+.skill-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+/* Card 9: Tasks Card */
+.tasks-card {
+    background: #fafafa;
+}
+
+.task-list {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.task-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: var(--dark-text);
+    font-size: 0.95rem;
+}
+
+.task-list li:last-child {
+    border-bottom: none;
+}
+
+.task-list li i {
+    color: var(--light-text);
+    font-size: 1.1rem;
+}
+
+/* Style for completed task icon */
+.task-list li i.fa-circle-check {
+    color: var(--accent-green);
+}
+
+/* Card 10: Resources Card */
+.resources-card {
+    background: #fafafa;
+}
+
+.resource-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resource-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: 0.3s;
+}
+
+.resource-item:hover {
+    border-color: var(--primary-blue);
+    transform: translateX(5px);
+}
+
+.resource-item i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+}
+
+.resource-item span {
+    color: var(--dark-text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+
+    /* On mobile, session card stacks vertically */
+    .session-card .card-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .date-badge {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .date-badge .day {
+        font-size: 1.5rem;
+    }
+
+    .session-details {
+        padding: 0;
+    }
+
+    .btn-join {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- New Card: Parent Portal Styles --- */
+
+/* Utility class for spacing */
+.space-between {
+    justify-content: space-between;
+}
+
+.parent-card {
+    /* A subtle, trustworthy green gradient tint */
+    background: linear-gradient(145deg, #f0fdf4, #ffffff);
+    border-color: rgba(135, 211, 0, 0.3);
+    /* Slight green border */
+}
+
+.parent-card .card-content {
+    gap: 30px;
+    /* Space between text and phone */
+}
+
+.parent-info {
+    flex: 1;
+    /* Takes up available space */
+}
+
+/* The checklist style */
+.parent-features-list {
+    list-style: none;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.parent-features-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.95rem;
+    color: var(--dark-text);
+    font-weight: 600;
+}
+
+/* Stylish checkmark circles */
+.parent-features-list li span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #eef6ff;
+    /* Blue background for contrast */
+    border-radius: 50%;
+}
+
+.parent-features-list li i {
+    color: var(--accent-green);
+    /* Green checkmark icon */
+    font-size: 1rem;
+}
+
+/* --- The Mock Phone Visual --- */
+.parent-visual {
+    flex: 0 0 auto;
+    /* Do not grow or shrink */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mock-phone-screen {
+    width: 170px;
+    height: 220px;
+    /* A shortened phone view */
+    background: linear-gradient(to bottom, #334155, #0f172a);
+    /* Dark mode screen look */
+    border-radius: 24px;
+    border: 4px solid #cbd5e1;
+    /* Silver phone frame */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* The little notch at the top of the phone */
+.phone-notch {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 18px;
+    background: #cbd5e1;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    z-index: 2;
+}
+
+/* The Notification Popup bubble */
+.notification-pop {
+    width: 90%;
+    background: rgba(255, 255, 255, 0.95);
+    /* Frosted glass look */
+    backdrop-filter: blur(5px);
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /* Add an entry animation */
+    animation: slideDownFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.notif-icon {
+    background: #eef6ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.notif-icon i {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+}
+
+.notif-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.notif-title {
+    font-size: 0.75rem;
+    color: var(--light-text);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.notif-body {
+    font-size: 0.85rem;
+    color: var(--dark-text);
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+/* Animation keyframes for the notification appearing */
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+
+    /* Stack vertically on mobile */
+    .parent-card .card-content {
+        flex-direction: column;
+        text-align: left;
+        gap: 30px;
+    }
+
+    /* Center the phone visual on mobile */
+    .parent-visual {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .parent-features-list {
+        align-items: flex-start;
+    }
+}
+
+.features {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: #f8faff;
+    /* Light background to make cards pop */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #0f172a;
+}
+
+.feature-grid {
+    display: grid;
+    /* This ensures cards wrap and have a minimum width */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 20px;
+    /* Highly rounded corners from the image */
+    text-align: left;
+    /* Left-aligned content from the image */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Soft, floating shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for the icon to get the light blue background */
+.icon-container {
+    display: inline-block;
+    padding: 15px;
+    background-color: #eef6fc;
+    /* The light blue background from the image */
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.card i {
+    font-size: 28px;
+    color: #0056b3;
+    /* The darker blue icon color from the image */
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #003366;
+    /* Dark blue title */
+    font-weight: 700;
+}
+
+.card p {
+    color: #6c757d;
+    /* Grey text for description */
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* --- Dropdown Container --- */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style the caret icon slightly */
+.btn-login i {
+    margin-left: 5px;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate caret when active */
+.dropdown-container.active .btn-login i {
+    transform: rotate(180deg);
+}
+
+/* --- Dropdown Menu (Hidden by default) --- */
+.dropdown-menu {
+    display: none;
+    /* Hidden initially */
+    position: absolute;
+    top: 120%;
+    /* Pushes it slightly below the button */
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1000;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Show the menu when the 'show' class is added via JS */
+.dropdown-menu.show {
+    display: block;
+}
+
+/* --- Dropdown Items --- */
+.dropdown-item {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    text-align: left;
+}
+
+.dropdown-item i {
+    margin-right: 8px;
+    color: var(--primary-blue, #4a90e2);
+    /* Uses your variable or fallback blue */
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f7fa;
+    color: var(--primary-blue, #0056b3);
+}
+
+/* Simple fade animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Mobile Responsiveness Adjustment --- */
+/* If your mobile menu stacks items, we need to adjust the dropdown position */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        /* Stack it normally on mobile */
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        background: rgba(0, 0, 0, 0.02);
+        margin-top: 10px;
+    }
+
+    .dropdown-item {
+        padding-left: 30px;
+        /* Indent items on mobile */
+    }
+}
+
+/* Force the dropdown text to be dark and align it properly */
+#navbar .nav-links .dropdown-menu .dropdown-item {
+    color: #333 !important;
+    /* !important ensures it overrides the white navbar text */
+    display: flex;
+    /* Keeps the icon and text in a straight line */
+    align-items: center;
+    /* Vertically centers the text with the icon */
+    gap: 10px;
+    /* Adds a small space between the icon and the text */
+}
+
+/* Optional: Ensure the text changes color on hover */
+#navbar .nav-links .dropdown-menu .dropdown-item:hover {
+    color: #0056b3 !important;
+    /* Change to blue on hover */
+    background-color: #f5f7fa;
+}
+
+/* --- AUTHENTICATION PAGES (Login / Register) --- */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Background Colors */
+.bg-student {
+    background-color: #eff6ff;
+}
+
+/* Light Blue */
+.bg-faculty {
+    background-color: #f0fdf4;
+}
+
+/* Light Green */
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 400px;
+    border-top: 5px solid;
+}
+
+/* Border Colors for Card */
+.border-student {
+    border-color: #2563eb;
+}
+
+/* Blue */
+.border-faculty {
+    border-color: #16a34a;
+}
+
+/* Green */
+
+.auth-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.text-student {
+    color: #1e40af;
+}
+
+.text-faculty {
+    color: #166534;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-input {
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.auth-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.auth-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.auth-btn:hover {
+    opacity: 0.9;
+}
+
+.btn-student {
+    background-color: #2563eb;
+}
+
+.btn-faculty {
+    background-color: #16a34a;
+}
+
+.auth-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.auth-footer a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a.link-student {
+    color: #2563eb;
+}
+
+.auth-footer a.link-faculty {
+    color: #16a34a;
+}
+
+/* Error Message Box */
+.error-box {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Google Button */
+/* Google Button - Centered and Full Width */
+.btn-google {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centers the text and icon inside */
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+    /* Makes the button fill the card width */
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-google:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}

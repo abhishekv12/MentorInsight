@@ -1,0 +1,464 @@
+/* Import base styles and add university-specific styles */
+@import './StudentDetailSemester.css';
+
+/* ========================================
+   UNIVERSITY-SPECIFIC STYLES
+   ======================================== */
+
+/* Grading Scale Reference Card */
+.grading-scale-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  margin-top: 20px;
+}
+
+.grading-scale-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+.grading-scale-table {
+  overflow-x: auto;
+  margin-bottom: 25px;
+}
+
+.grading-scale-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.grading-scale-table th {
+  padding: 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.grading-scale-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #334155;
+}
+
+.grading-scale-table .grade-point {
+  font-weight: 700;
+  color: #059669;
+  font-size: 16px;
+}
+
+/* Grade Badge Variations */
+.grade-badge {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  display: inline-block;
+}
+
+.grade-O {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.grade-Aplus {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.grade-A {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.grade-Bplus {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+
+.grade-B {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.grade-C {
+  background: #fed7aa;
+  color: #c2410c;
+}
+
+.grade-D, .grade-E {
+  background: #fecaca;
+  color: #991b1b;
+}
+
+.grade-F {
+  background: #1f2937;
+  color: white;
+}
+
+/* Credit Information */
+.credit-info {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.credit-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #0f172a;
+}
+
+.credit-info p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #334155;
+}
+
+/* Credits and GP Combined Cell */
+.credits-gp-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.credits-gp-cell span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.gp-highlight {
+  font-weight: 800;
+  font-size: 16px !important;
+  color: #059669 !important;
+}
+
+/* SGPA Display in Total Row */
+.sgpa-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.sgpa-display span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* IA Examination Table (Matching University Format) */
+.exam-table-ia {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.exam-table-ia thead {
+  background: #f8fafc;
+}
+
+.exam-table-ia th {
+  padding: 12px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid #e2e8f0;
+}
+
+.exam-table-ia td {
+  padding: 12px;
+  border: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #334155;
+  text-align: center;
+}
+
+.exam-table-ia .subject-name {
+  text-align: left !important;
+  min-width: 150px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.exam-table-ia .avg-cell {
+  background: #eff6ff;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.sgpa-grade-combined {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.sgpa-text {
+  font-weight: 700;
+  color: #059669;
+  font-size: 13px;
+}
+
+.grade-text {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* University Exam Table */
+.exam-table-university {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.exam-table-university thead {
+  background: #f8fafc;
+}
+
+.exam-table-university th {
+  padding: 12px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid #e2e8f0;
+}
+
+.exam-table-university td {
+  padding: 12px;
+  border: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #334155;
+  text-align: center;
+}
+
+.exam-table-university .subject-name {
+  text-align: left !important;
+  min-width: 200px;
+}
+
+/* Subject Type Badge */
+.subject-type-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+
+/* Credits Cell */
+.credits-cell {
+  font-weight: 700;
+  color: #059669;
+  font-size: 15px;
+}
+
+/* Percentage Cell */
+.percentage-cell {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Grade Point Cell */
+.grade-point-cell {
+  font-weight: 700;
+  color: #059669;
+  font-size: 16px;
+}
+
+/* Credit Points Cell (Credit × GP) */
+.credit-points-cell {
+  font-weight: 800;
+  color: #0f172a;
+  font-size: 16px;
+  background: #f0fdf4;
+}
+
+/* Failed Subject Row */
+.failed-subject {
+  background: #fef2f2;
+}
+
+.failed-subject td {
+  color: #991b1b;
+}
+
+/* Total Row */
+.total-row {
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.total-credits {
+  color: #059669;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.total-credit-points {
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 900;
+  background: #ecfdf5;
+}
+
+/* SGPA Row */
+.sgpa-row {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.final-sgpa {
+  color: #1e40af;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/* Calculation Info */
+.calculation-info {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  border-radius: 8px;
+}
+
+.calculation-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #065f46;
+  font-family: 'Courier New', monospace;
+}
+
+/* CGPA Summary */
+.cgpa-summary {
+  margin-top: 30px;
+  padding: 30px;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+}
+
+.cgpa-summary h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.cgpa-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.cgpa-value {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.cgpa-label {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Subject Form Enhancements */
+.subject-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.credits-badge {
+  padding: 6px 12px;
+  background: #10b981;
+  color: white;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Semester Stats Enhancement */
+.semester-stats .stat-value {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1e40af;
+}
+
+/* Subject Count Enhancement */
+.subject-count {
+  padding: 4px 12px;
+  background: #e0e7ff;
+  color: #4f46e5;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .exam-table-university {
+    font-size: 12px;
+  }
+  
+  .exam-table-university th,
+  .exam-table-university td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .grading-scale-card {
+    padding: 20px;
+  }
+  
+  .cgpa-value {
+    font-size: 48px;
+  }
+  
+  .exam-table-wrapper {
+    overflow-x: auto;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .btn-add,
+  .back-btn,
+  .detail-tabs,
+  .modal-overlay {
+    display: none;
+  }
+  
+  .semester-content {
+    display: block !important;
+  }
+  
+  .exam-table-university {
+    page-break-inside: avoid;
+  }
+}

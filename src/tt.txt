@@ -1,0 +1,283 @@
+Test Case 16: Student Dashboard Overview Load
+Title: Verify Student Dashboard Loads Correctly
+Description: This test case validates that the student dashboard overview page loads with correct data such as attendance, CGPA, sessions, tasks, and quick access widgets.
+Assumption: Student account exists and is active.
+Test Steps:
+Login as a student.
+Navigate to the dashboard overview page.
+Expected Result: Student dashboard loads with attendance percentage, CGPA, upcoming sessions, and quick access options visible.
+Remark: Pass
+
+🔹 Test Case 17: Upcoming Session Display
+
+Title: Verify Upcoming Session Card
+Description: This test case checks whether upcoming sessions are displayed with correct date, time, venue, and mentor details.
+Assumption: At least one upcoming session is scheduled by faculty.
+Test Steps:
+Login as a student.
+Open the overview section.
+Expected Result: Upcoming session card shows correct session details and countdown timer.
+Remark: Pass
+
+🔹 Test Case 18: Student Attendance View
+
+Title: Verify Student Can View Attendance
+
+Description: This test case ensures that students can view their attendance records correctly.
+
+Assumption: Attendance data is available in the database.
+
+Test Steps:
+
+Login as student.
+
+Open the Attendance section.
+
+Expected Result: Attendance percentage and records are displayed accurately.
+
+Remark: Pass
+
+🔹 Test Case 19: Mentor Marks Attendance
+
+Title: Verify Mentor Attendance Marking
+
+Description: This test case validates that mentors can mark attendance for a session.
+
+Assumption: Mentor is assigned to a batch.
+
+Test Steps:
+
+Login as mentor.
+
+Open Attendance Management.
+
+Mark attendance for students.
+
+Expected Result: Attendance is saved successfully and reflected in student dashboard.
+
+Remark: Pass
+
+🔹 Test Case 20: Task Assignment by Mentor
+
+Title: Verify Task Assignment Feature
+
+Description: This test case checks whether mentors can assign tasks to students.
+
+Assumption: Mentor is logged in and batch is created.
+
+Test Steps:
+
+Login as mentor.
+
+Navigate to Task Management.
+
+Create and assign a new task.
+
+Expected Result: Task is visible in student task section.
+
+Remark: Pass
+
+🔹 Test Case 21: Task Submission by Student
+
+Title: Verify Student Task Submission
+
+Description: This test case ensures that students can submit assigned tasks successfully.
+
+Assumption: Task is already assigned.
+
+Test Steps:
+
+Login as student.
+
+Open Tasks section.
+
+Upload task file.
+
+Expected Result: Task submission is saved and status changes to submitted.
+
+Remark: Pass
+
+🔹 Test Case 22: Notifications Delivery
+
+Title: Verify Notifications Reach Users
+
+Description: This test case validates that notifications sent by mentors/admins are delivered to students and parents.
+
+Assumption: Notification service is active.
+
+Test Steps:
+
+Mentor sends a broadcast notification.
+
+Student/Parent opens notification panel.
+
+Expected Result: Notification is visible to intended users.
+
+Remark: Pass
+
+🔹 Test Case 23: Parent View of Student Profile
+
+Title: Verify Parent Can View Student Details
+
+Description: This test case checks whether parents can view student profile, attendance, and academic details.
+
+Assumption: Parent is linked to a student account.
+
+Test Steps:
+
+Login as parent.
+
+Open student overview/profile.
+
+Expected Result: Parent dashboard shows student attendance, CGPA, and session details.
+
+Remark: Pass
+
+🔹 Test Case 24: Admin Dashboard Load
+
+Title: Verify Admin Dashboard Overview
+
+Description: This test case validates that admin dashboard loads system health, student count, faculty count, batches, and departments.
+
+Assumption: Admin account exists.
+
+Test Steps:
+
+Login as admin.
+
+Open dashboard overview.
+
+Expected Result: All analytics cards and quick actions are displayed correctly.
+
+Remark: Pass
+
+🔹 Test Case 25: Admin Add Faculty
+
+Title: Verify Admin Can Add Faculty
+
+Description: This test case ensures that admin can add new faculty members.
+
+Assumption: Admin is logged in.
+
+Test Steps:
+
+Open Add Faculty form.
+
+Enter valid faculty details.
+
+Expected Result: Faculty is added and visible in faculty list.
+
+Remark: Pass
+
+🔹 Test Case 26: Admin Enroll Student
+
+Title: Verify Student Enrollment
+
+Description: This test case checks student enrollment functionality.
+
+Assumption: Batch and department exist.
+
+Test Steps:
+
+Admin opens Enroll Student.
+
+Enters valid student data.
+
+Expected Result: Student appears in student list and assigned batch.
+
+Remark: Pass
+
+🔹 Test Case 27: Faculty Creates Session
+
+Title: Verify Faculty Can Create Session
+
+Description: This test case validates session creation by faculty.
+
+Assumption: Faculty account is active.
+
+Test Steps:
+
+Login as faculty.
+
+Create a new session/workshop.
+
+Expected Result: Session appears in student upcoming sessions section.
+
+Remark: Pass
+
+🔹 Test Case 28: Broadcast Message by Faculty
+
+Title: Verify Broadcast Feature
+
+Description: This test case checks whether faculty can broadcast messages to students.
+
+Assumption: Students exist in the batch.
+
+Test Steps:
+
+Faculty sends a broadcast message.
+
+Students check messages section.
+
+Expected Result: Message is delivered successfully to students.
+
+Remark: Pass
+
+🔹 Test Case 29: Logout Functionality
+
+Title: Verify Secure Logout
+
+Description: This test case ensures that users can log out securely from the system.
+
+Assumption: User is logged in.
+
+Test Steps:
+
+Click Logout button.
+
+Expected Result: User is redirected to login page and session is cleared.
+
+Remark: Pass
+
+🔹 Test Case 30: Role-Based Access Control
+
+Title: Verify Role-Based Access Restrictions
+
+Description: This test case checks that students cannot access admin or faculty routes.
+
+Assumption: RBAC is implemented.
+
+Test Steps:
+
+Login as student.
+
+Try to access admin URL directly.
+
+Expected Result: Access is denied or user is redirected.
+
+Remark: Pas
+
+
+
+Let's say we have a dataset of students&#39; marks and their corresponding percentages. we'll
+apply conditional formatting based on the grade criteria, where:
+● A Grade: Percentage greater than or equal to 90% (highlight in green).
+● B Grade: Percentage between 75% and 89% (highlight in blue).
+● C Grade: Percentage between 40% and 74% (highlight in yellow).
+● D Grade: Percentage less than 40% (highlight in red).
+Step 1: Calculate the Percentage
+1. First, calculate the percentage for each student.
+2. Drag this formula down to calculate the percentage for all students.
+
+Step 2: Apply Conditional Formatting for Grades
+1. Select the &quot;Percentage&quot; column.
+2. Apply Conditional Formatting for Grade A (Green)
+1. Go to the Home tab.
+2. Click on Conditional Formatting.
+3. Choose New Rule.
+4. Select Format only cells that contain.
+5. In the rule description, select Cell Value and choose greater than or equal to.
+6. Enter 90 in the value box.
+7. Click Format, go to the Fill tab, and choose a green color.
+8. Click OK to apply the rule.
+9. Apply same steps for all grades.

@@ -1,0 +1,161 @@
+/* --- MAIN NAVBAR CONTAINER (BLUE THEME) --- */
+.navbar-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #0077b6; /* The Blue Color from your image */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* --- LOGO --- */
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff; /* White Text */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- NAVIGATION LINKS --- */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #e0f2fe; /* Light Blue/White text */
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+/* --- DASHBOARD PILL (When Logged In) --- */
+.dashboard-pill {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  color: #ffffff !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600 !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.dashboard-pill:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================
+   LOGIN BUTTON STYLE (WHITE PILL)
+   ========================================= */
+.btn-login-white-pill {
+  background-color: #ffffff;
+  border: none;
+  color: #0077b6;              /* Blue Text */
+  padding: 10px 24px;          
+  border-radius: 9999px;       /* Full rounding */
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-login-white-pill:hover {
+  background-color: #f0f9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* =========================================
+   DROPDOWN MENU
+   ========================================= */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-menu-clean {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 180px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  border: 1px solid #f1f5f9;
+  animation: fadeIn 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+/* Dropdown Items */
+.dropdown-item-clean {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s;
+  text-align: left;
+}
+
+.dropdown-item-clean:hover {
+  background-color: #f0f9ff;
+  color: #0077b6;
+}
+
+/* --- LOGGED IN USER SECTION --- */
+.user-profile-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-greeting {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.btn-logout-white {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-logout-white:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
