@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import axios from "axios";
-import API_URL from "../../config";
+import API_URL from "../config";
 
 const Navbar = () => {
   const [user, setUser]           = useState(null);
