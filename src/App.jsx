@@ -24,8 +24,8 @@ import AdminLogin from "./pages/AdminLogin";
 import LoginSelection from "./pages/LoginSelection";
 import FacultySelection from "./pages/FacultySelection";
 import DepartmentDetail from "./components/admin-views/Departmentdetail";
-import ParentLogin from "./pages/ParentLogin";
-import ParentDashboard from "./pages/ParentDashboard";
+import ParentLogin from "./pages/Parentlogin";
+import ParentDashboard from "./pages/Parentdashboard";
 
 // Layout to hide Navbar/Footer on dashboards and login pages
 const Layout = ({ children }) => {
