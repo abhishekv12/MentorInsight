@@ -3,6 +3,7 @@ import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import API_URL from "../config";
 
 const FacultyRegister = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
@@ -19,7 +20,7 @@ const FacultyRegister = () => {
       const user = userCredential.user;
 
       // 2. Save Faculty Profile to MongoDB
-      await axios.post('http://localhost:5000/api/users', {
+      await axios.post('${API_URL}/api/users', {
         uid: user.uid,
         name: formData.name,
         email: formData.email,

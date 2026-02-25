@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../../config";
 
 const SessionAttendeesModal = ({ session, facultyUid, onClose }) => {
   const [attendees, setAttendees] = useState([]);
@@ -13,7 +14,7 @@ const SessionAttendeesModal = ({ session, facultyUid, onClose }) => {
     const fetchAttendees = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/faculty/session/${session._id}/attendees`
+          `${API_URL}/api/faculty/session/${session._id}/attendees`
         );
         if (res.data.success) {
           setAttendees(res.data.attendees || []);
@@ -33,7 +34,7 @@ const SessionAttendeesModal = ({ session, facultyUid, onClose }) => {
     setToggling(true);
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/faculty/session/${session._id}/toggle-applications`,
+        `${API_URL}/api/faculty/session/${session._id}/toggle-applications`,
         { facultyUid }
       );
       if (res.data.success) {

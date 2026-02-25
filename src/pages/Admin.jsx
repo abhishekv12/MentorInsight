@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Admin.css";
 import FacultyReviewAdmin from "../components/admin-views/FacultyReviewAdmin";
 import "../components/faculty-review.css";
+import API_URL from "../config";
 
 // Sub-components
 import AdminSidebar from "../components/AdminSidebar";
@@ -48,7 +49,7 @@ const AdminDashboard = () => {
     try {
       // We pass ?college=${nameOfCollege} so the server filters the count
       const res = await axios.get(
-        `http://localhost:5000/api/admin/stats?college=${nameOfCollege}`,
+        `${API_URL}/api/admin/stats?college=${nameOfCollege}`,
       );
       setStats(res.data);
       setLoading(false);

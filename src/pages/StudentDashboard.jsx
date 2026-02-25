@@ -3,6 +3,8 @@ import { auth } from "../firebase";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
+import API_URL from "../config";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -549,11 +551,11 @@ const StudentDashboard = () => {
       // 2. Fetch active campaigns AND submitted reviews in parallel
       const [campRes, subRes] = await Promise.allSettled([
         axios.get(
-          `http://localhost:5000/api/student/review-campaigns/${batchId}`,
+          `${API_URL}/api/student/review-campaigns/${batchId}`,
         ),
         rollNo
           ? axios.get(
-              `http://localhost:5000/api/student/my-reviews/${rollNo}?studentId=${student?._id || ""}`,
+              `${API_URL}/api/student/my-reviews/${rollNo}?studentId=${student?._id || ""}`,
             )
           : Promise.resolve({ data: { reviews: [] } }),
       ]);
@@ -611,12 +613,12 @@ const StudentDashboard = () => {
       if (batchId) {
         // ✅ PRIMARY: fetch by batchId (most reliable)
         response = await axios.get(
-          `http://localhost:5000/api/student/sessions-by-id/${batchId}/${encodeURIComponent(division)}`,
+          `${API_URL}/api/student/sessions-by-id/${batchId}/${encodeURIComponent(division)}`,
         );
       } else {
         // ✅ FALLBACK: fetch by batchName
         response = await axios.get(
-          `http://localhost:5000/api/student/sessions/${encodeURIComponent(batchName)}/${encodeURIComponent(division)}`,
+          `${API_URL}/api/student/sessions/${encodeURIComponent(batchName)}/${encodeURIComponent(division)}`,
         );
       }
 
@@ -690,14 +692,14 @@ const StudentDashboard = () => {
       if (currentUser) {
         try {
           const userResponse = await axios.get(
-            `http://localhost:5000/api/users/${currentUser.uid}`,
+            `${API_URL}/api/users/${currentUser.uid}`,
           );
           const userData = userResponse.data;
 
           if (userData.rollNo && userData.mobile) {
             try {
               const studentDataResponse = await axios.get(
-                `http://localhost:5000/api/student/full-data/${userData.rollNo}/${userData.mobile}`,
+                `${API_URL}/api/student/full-data/${userData.rollNo}/${userData.mobile}`,
               );
 
               if (studentDataResponse.data.success) {
@@ -1014,7 +1016,7 @@ const StudentDashboard = () => {
       };
 
       const response = await axios.put(
-        `http://localhost:5000/api/users/${auth.currentUser.uid}`,
+        `${API_URL}/api/users/${auth.currentUser.uid}`,
         updatePayload,
         {
           headers: {
@@ -1088,7 +1090,7 @@ const StudentDashboard = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/student/session/${sessionId}/apply`,
+        `${API_URL}/api/student/session/${sessionId}/apply`,
         {
           studentId: student._id || student.rollNo,
           rollNo: student.rollNo,
@@ -1139,7 +1141,7 @@ const StudentDashboard = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/student/session/${sessionId}/apply`,
+        `${API_URL}/api/student/session/${sessionId}/apply`,
         {
           data: {
             studentId: student._id || student.rollNo,

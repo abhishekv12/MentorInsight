@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from "../../../config";
 
 const FacultyDirectory = () => {
   const [faculty, setFaculty] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/faculty-list')
+    axios.get('${API_URL}/api/faculty-list')
       .then(res => setFaculty(res.data))
       .catch(err => console.error(err));
   }, []);

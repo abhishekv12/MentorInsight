@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_URL from "../config";
 
 // ============================================================
 // ParentLogin.jsx — MMMP Parent Connect Login
@@ -34,7 +35,7 @@ const ParentLogin = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/parent/login', {
+      const res = await axios.post('${API_URL}/api/parent/login', {
         rollNo: form.rollNo.trim(),
         mobile: form.mobile.trim(),
       });

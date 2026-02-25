@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../config";
 
 // ============================================================
 // LearningHub.jsx
@@ -313,7 +314,7 @@ const LearningHub = ({ student }) => {
     try {
       if (!batchId) throw new Error("no batchId");
       const res = await axios.get(
-        `http://localhost:5000/api/student/learning/${batchId}/${encodeURIComponent(division)}`,
+        `${API_URL}/api/student/learning/${batchId}/${encodeURIComponent(division)}`,
       );
       if (res.data.success) {
         setResources(res.data.resources || []);

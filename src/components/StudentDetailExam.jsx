@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./StudentDetailExam.css";
 import StudentProfileForm from "./StudentProfileForm";
 import StudentInsightPanel from "./StudentInsightPanel";
+import API_URL from "../../config";
 
 const StudentDetailExam = ({ student, batch, onBack, onUpdate, sessions }) => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -30,7 +31,7 @@ const StudentDetailExam = ({ student, batch, onBack, onUpdate, sessions }) => {
     try {
       // Step 1: check-email to get uid — FULL URL required
       const checkRes = await fetch(
-        `http://localhost:5000/api/users/check-email/${encodeURIComponent(student.email)}`,
+        `${API_URL}/api/users/check-email/${encodeURIComponent(student.email)}`,
       );
 
       if (!checkRes.ok) throw new Error("Email not found");
@@ -40,7 +41,7 @@ const StudentDetailExam = ({ student, batch, onBack, onUpdate, sessions }) => {
       if (!uid) throw new Error("No UID returned");
 
       // Step 2: fetch user document by uid — FULL URL required
-      const userRes = await fetch(`http://localhost:5000/api/users/${uid}`);
+      const userRes = await fetch(`${API_URL}/api/users/${uid}`);
       if (!userRes.ok) throw new Error("User not found");
       const userData = await userRes.json();
 

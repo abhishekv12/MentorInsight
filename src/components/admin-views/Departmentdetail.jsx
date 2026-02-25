@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Departmentdetail.css';
+import API_URL from "../../../config";
 
 // ============================================================
 // DepartmentDetail.jsx — Enhanced with per-batch Review Posting
@@ -53,7 +54,7 @@ const DepartmentDetail = () => {
   const fetchDepartmentData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/batches?college=${collegeName}`);
+      const res = await axios.get(`${API_URL}/api/batches?college=${collegeName}`);
       const allBatches = res.data;
       const deptBatches = allBatches.filter(b => b.department === deptName);
       const mainDept    = deptBatches.find(b => !b.facultyUid);
@@ -73,7 +74,7 @@ const DepartmentDetail = () => {
 
   const fetchTeachers = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/teachers?college=${collegeName}`);
+      const res = await axios.get(`${API_URL}/api/admin/teachers?college=${collegeName}`);
       setTeachers(res.data.teachers || []);
     } catch { /* ignore — use empty list */ }
   };
@@ -87,7 +88,7 @@ const DepartmentDetail = () => {
   const handleAssignMentor = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/admin/assign-mentor', { ...assignData, collegeName });
+      await axios.post('${API_URL}/api/admin/assign-mentor', { ...assignData, collegeName });
       alert(`✅ Mentor Assigned! Email sent to ${assignData.mentorEmail}`);
       setShowAssignModal(false);
       fetchDepartmentData();
@@ -123,7 +124,7 @@ const DepartmentDetail = () => {
     setReviewPosting(true);
     try {
       const teacher = teachers.find(t => t._id === campaignForm.teacherId);
-      await axios.post('http://localhost:5000/api/admin/review-campaigns', {
+      await axios.post('${API_URL}/api/admin/review-campaigns', {
         ...campaignForm,
         teacherName:  teacher?.name || campaignForm.teacherName,
         batchId:      reviewBatch._id,

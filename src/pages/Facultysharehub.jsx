@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../config";
 
 // ============================================================
 // FacultyShareHub.jsx
@@ -82,7 +83,7 @@ const FacultyShareHub = ({ currentUser, batches = [], onBack }) => {
     try {
       if (!currentUser?.uid) throw new Error("no uid");
       const res = await axios.get(
-        `http://localhost:5000/api/faculty/learning/${currentUser.uid}`,
+        `${API_URL}/api/faculty/learning/${currentUser.uid}`,
       );
       if (res.data.success) {
         setShared(res.data.resources || []);
@@ -125,7 +126,7 @@ const FacultyShareHub = ({ currentUser, batches = [], onBack }) => {
 
       let newResource;
       try {
-        const res = await axios.post("http://localhost:5000/api/faculty/learning/share", payload);
+        const res = await axios.post("${API_URL}/api/faculty/learning/share", payload);
         newResource = res.data.resource;
       } catch {
         // Optimistic update if API not ready
@@ -156,7 +157,7 @@ const FacultyShareHub = ({ currentUser, batches = [], onBack }) => {
   const handleDelete = async (id) => {
     if (!window.confirm("Remove this shared resource?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/faculty/learning/${id}`);
+      await axios.delete(`${API_URL}/api/faculty/learning/${id}`);
     } catch { /* ignore */ }
     setShared(prev => prev.filter(r => r._id !== id));
   };
@@ -164,7 +165,7 @@ const FacultyShareHub = ({ currentUser, batches = [], onBack }) => {
   const handleTogglePin = async (id) => {
     setShared(prev => prev.map(r => r._id === id ? { ...r, isPinned: !r.isPinned } : r));
     try {
-      await axios.patch(`http://localhost:5000/api/faculty/learning/${id}/pin`);
+      await axios.patch(`${API_URL}/api/faculty/learning/${id}/pin`);
     } catch { /* ignore */ }
   };
 

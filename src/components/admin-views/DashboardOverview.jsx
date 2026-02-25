@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_URL from "../../../config";
 // import './DashboardOverview.css'; // Uncomment if you have the CSS file
 
 const DashboardOverview = ({ stats }) => {
@@ -19,7 +20,7 @@ const DashboardOverview = ({ stats }) => {
 
       try {
         // Fetch overview data specific to THIS college
-        const res = await axios.get(`http://localhost:5000/api/admin/overview-data?college=${collegeName}`);
+        const res = await axios.get(`${API_URL}/api/admin/overview-data?college=${collegeName}`);
         setRecentData(res.data);
       } catch (err) {
         console.error("Error fetching overview:", err);

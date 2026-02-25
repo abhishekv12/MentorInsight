@@ -1,3 +1,4 @@
+import API_URL from "../config";
 import React, { useState } from 'react';
 import { auth } from '../firebase'; // Keep Firebase for Login Security
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -24,7 +25,7 @@ const StudentRegister = () => {
 
       // 2. Send Data to your MongoDB Backend
       // We send the Firebase UID so we can link the two systems
-      await axios.post('http://localhost:5000/api/users', {
+      await axios.post('${API_URL}/api/users', {
         uid: user.uid, 
         name: formData.name,
         email: formData.email,
@@ -89,3 +90,4 @@ const StudentRegister = () => {
 };
 
 export default StudentRegister;
+

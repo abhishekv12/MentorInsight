@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../../config";
 
 // ============================================================
 // FacultyReviewStudent.jsx
@@ -20,7 +21,7 @@ import axios from "axios";
 //   // Add to fetchStudentSessions or separate useEffect:
 //   const fetchActiveCampaigns = async (batchId) => {
 //     try {
-//       const res = await axios.get(`http://localhost:5000/api/student/review-campaigns/${batchId}`);
+//       const res = await axios.get(`${API_URL}/api/student/review-campaigns/${batchId}`);
 //       setActiveFacultyReviews(res.data.campaigns || []);
 //     } catch { setActiveFacultyReviews([]); }
 //   };
@@ -140,11 +141,11 @@ const FacultyReviewStudent = ({ student, onReviewSubmitted }) => {
     try {
       const [campRes, subRes] = await Promise.allSettled([
         axios.get(
-          `http://localhost:5000/api/student/review-campaigns/${batchId}`,
+          `${API_URL}/api/student/review-campaigns/${batchId}`,
         ),
         // Change fetchCampaigns to pass studentId as query param:
         axios.get(
-          `http://localhost:5000/api/student/my-reviews/${student?.rollNo}?studentId=${student?._id || ""}`,
+          `${API_URL}/api/student/my-reviews/${student?.rollNo}?studentId=${student?._id || ""}`,
         ),
       ]);
       if (
@@ -189,7 +190,7 @@ const FacultyReviewStudent = ({ student, onReviewSubmitted }) => {
     }
     setSubmitting(true);
     try {
-      await axios.post("http://localhost:5000/api/student/submit-review", {
+      await axios.post("${API_URL}/api/student/submit-review", {
         campaignId: selected._id,
         teacherId: selected.teacherId,
         teacherName: selected.teacherName,

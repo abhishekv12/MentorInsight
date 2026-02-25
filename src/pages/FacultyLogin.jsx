@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import axios from "axios";
+import API_URL from "../config";
 
 // ============================================================
 // FacultyLogin.jsx — Fixed Google login
@@ -33,7 +34,7 @@ const FacultyLogin = () => {
       let checkRes;
       try {
         checkRes = await axios.get(
-          `http://localhost:5000/api/users/check-email/${user.email}`
+          `${API_URL}/api/users/check-email/${user.email}`
         );
       } catch (err) {
         if (err.response?.status === 404) {
@@ -59,7 +60,7 @@ const FacultyLogin = () => {
 
       // Upsert with real Firebase uid — this fixes the pre-assigned faculty case
       // where admin used uid:"generated_..." via assign-mentor
-      await axios.post("http://localhost:5000/api/users", {
+      await axios.post("${API_URL}/api/users", {
         uid: user.uid,
         email: user.email,
         name: user.displayName || checkRes.data.name,
@@ -87,14 +88,14 @@ const FacultyLogin = () => {
     setError("");
     setLoading(true);
     try {
-      const verifyRes = await axios.post("http://localhost:5000/api/faculty/verify-inst", {
+      const verifyRes = await axios.post("${API_URL}/api/faculty/verify-inst", {
         collegeName: formData.collegeName.trim(),
         instituteCode: formData.instituteCode.trim(),
       });
       if (!verifyRes.data.valid) throw new Error(verifyRes.data.message);
 
       const result = await signInWithPopup(auth, googleProvider);
-      await axios.post("http://localhost:5000/api/users", {
+      await axios.post("${API_URL}/api/users", {
         uid: result.user.uid,
         name: formData.facultyName || result.user.displayName,
         email: result.user.email,

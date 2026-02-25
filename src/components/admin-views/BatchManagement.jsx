@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from "../../../config";
 
 const BatchManagement = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const BatchManagement = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/batches?college=${collegeName}`);
+      const res = await axios.get(`${API_URL}/api/batches?college=${collegeName}`);
       const allBatches = res.data;
       const deptMap = {};
       allBatches.forEach(batch => {
@@ -33,7 +34,7 @@ const BatchManagement = () => {
   const handleCreateBatch = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/batches', {
+      await axios.post('${API_URL}/api/batches', {
         name: newBatch.name, department: newBatch.code,
         year: new Date().getFullYear().toString(),
         mentorId: newBatch.mentorName, assignedMentor: "Unassigned", collegeName,

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import axios from "axios";
+import API_URL from "../config";
 
 const AdminLogin = () => {
   const [mode, setMode] = useState("login");
@@ -33,12 +34,12 @@ const AdminLogin = () => {
       if (user.email.toLowerCase() !== credentials.email.toLowerCase())
         throw new Error(`Please sign in with ${credentials.email}. You used ${user.email}.`);
       if (mode === "register") {
-        await axios.post("http://localhost:5000/api/admin/register", {
+        await axios.post("${API_URL}/api/admin/register", {
           collegeName: credentials.collegeName, secretCode: credentials.secretCode,
           instituteCode: credentials.instituteCode, collegeType: credentials.collegeType, adminEmail: user.email,
         });
       } else {
-        const response = await axios.post("http://localhost:5000/api/admin/verify", {
+        const response = await axios.post("${API_URL}/api/admin/verify", {
           collegeName: credentials.collegeName, secretCode: credentials.secretCode,
           instituteCode: credentials.instituteCode, email: user.email,
         });
@@ -64,7 +65,7 @@ const AdminLogin = () => {
       const user = result.user;
       if (user.email.toLowerCase() !== forgotData.email.toLowerCase())
         throw new Error(`Please sign in with ${forgotData.email}.`);
-      const res = await axios.post("http://localhost:5000/api/admin/forgot-verify", {
+      const res = await axios.post("${API_URL}/api/admin/forgot-verify", {
         collegeName: forgotData.collegeName, email: user.email, instituteCode: forgotData.instituteCode,
       });
       if (res.data.verified) { setForgotStep("reset"); setError(""); }
@@ -81,7 +82,7 @@ const AdminLogin = () => {
     if (forgotData.newCode !== forgotData.confirmCode) { setError("Codes do not match."); return; }
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/admin/reset-code", {
+      await axios.post("${API_URL}/api/admin/reset-code", {
         collegeName: forgotData.collegeName, email: forgotData.email,
         instituteCode: forgotData.instituteCode, newSecretCode: forgotData.newCode,
       });

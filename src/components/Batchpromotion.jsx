@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './BatchPromotion.css';
+import API_URL from "../../config";
 
 // Props: batches (ALL batches array), onClose, onPromotionComplete
 const BatchPromotion = ({ batches, onClose, onPromotionComplete }) => {
@@ -120,7 +121,7 @@ const BatchPromotion = ({ batches, onClose, onPromotionComplete }) => {
 
     try {
       setPromoting(true);
-      const response = await axios.post('http://localhost:5000/api/faculty/promote-batch', {
+      const response = await axios.post('${API_URL}/api/faculty/promote-batch', {
         batchId: selectedBatch.id,
         currentYear: selectedBatch.year,
         currentAcademicYear: selectedBatch.academicYear,

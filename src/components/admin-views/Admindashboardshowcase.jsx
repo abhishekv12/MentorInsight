@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../../../config";
 
 // ============================================================
 // AdminDashboardShowcase.jsx
@@ -86,7 +87,7 @@ const AdminDashboardShowcase = ({ stats = {}, collegeName = "", setActiveView })
       const cn = collegeName || localStorage.getItem("collegeName");
       if (!cn) { setLoading(false); return; }
       try {
-        const res = await axios.get(`http://localhost:5000/api/admin/overview-data?college=${cn}`);
+        const res = await axios.get(`${API_URL}/api/admin/overview-data?college=${cn}`);
         const d = res.data;
         setData({
           batches:  d.recentBatches  || [],

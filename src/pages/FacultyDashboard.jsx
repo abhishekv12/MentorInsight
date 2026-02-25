@@ -11,6 +11,7 @@ import FacultyDashboardFooter from "./FacultyDashboardFooter";
 import FacultyDashboardShowcase from "./FacultyDashboardShowcase";
 import FacultyShareHub from "./FacultyShareHub";
 import "./faculty-additions.css";
+import API_URL from "../config";
 
 function FacultyDashboard() {
   // --- NAVIGATION STATE ---
@@ -81,7 +82,7 @@ function FacultyDashboard() {
   const fetchBatches = async (user) => {
     try {
       setLoading(true);
-      const url = `http://localhost:5000/api/faculty/batches/${user.uid}`;
+      const url = `${API_URL}/api/faculty/batches/${user.uid}`;
       const response = await axios.get(url);
 
       console.log("Fetched batches:", response.data);
@@ -154,7 +155,7 @@ function FacultyDashboard() {
     setSessionsLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/faculty/sessions/${currentUser.uid}`,
+        `${API_URL}/api/faculty/sessions/${currentUser.uid}`,
       );
       if (res.data.success) {
         setMySessions(res.data.sessions || []);
@@ -170,7 +171,7 @@ function FacultyDashboard() {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         try {
-          await axios.post("http://localhost:5000/api/users", {
+          await axios.post("${API_URL}/api/users", {
             uid: user.uid,
             email: user.email,
             name: user.displayName,
@@ -178,14 +179,14 @@ function FacultyDashboard() {
           });
 
           const userResponse = await axios.get(
-            `http://localhost:5000/api/users/${user.uid}`,
+            `${API_URL}/api/users/${user.uid}`,
           );
           const userData = userResponse.data;
           console.log("👤 Full User Data:", userData);
 
           if (!userData.mentorId && !userData.department) {
             const emailRes = await axios.get(
-              `http://localhost:5000/api/users/check-email/${user.email}`,
+              `${API_URL}/api/users/check-email/${user.email}`,
             );
             if (emailRes.data.exists && emailRes.data.mentorId) {
               userData.mentorId = emailRes.data.mentorId;
@@ -304,7 +305,7 @@ function FacultyDashboard() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/faculty/create-batch",
+        "${API_URL}/api/faculty/create-batch",
         {
           batchName: createClassForm.batchName,
           academicYear: createClassForm.academicYear,
@@ -349,7 +350,7 @@ function FacultyDashboard() {
       setLoading(true);
 
       const response = await axios.post(
-        `http://localhost:5000/api/faculty/batch/${selectedBatch.id}/add-student`,
+        `${API_URL}/api/faculty/batch/${selectedBatch.id}/add-student`,
         {
           name: newStudent.name,
           rollNo: newStudent.rollNo,
@@ -364,7 +365,7 @@ function FacultyDashboard() {
       console.log("✅ Student added successfully:", response.data);
 
       const batchResponse = await axios.get(
-        `http://localhost:5000/api/faculty/batch/${selectedBatch.id}`,
+        `${API_URL}/api/faculty/batch/${selectedBatch.id}`,
       );
       const updatedBatch = batchResponse.data;
 
@@ -407,7 +408,7 @@ function FacultyDashboard() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/faculty/send-session",
+        "${API_URL}/api/faculty/send-session",
         {
           ...sessionForm,
           facultyUid: currentUser.uid,
@@ -500,12 +501,12 @@ function FacultyDashboard() {
       setLoading(true);
 
       await axios.put(
-        `http://localhost:5000/api/faculty/batch/${selectedBatch.id}/student/${updatedStudent._id || selectedStudent._id}`,
+        `${API_URL}/api/faculty/batch/${selectedBatch.id}/student/${updatedStudent._id || selectedStudent._id}`,
         updatedStudent,
       );
 
       const batchResponse = await axios.get(
-        `http://localhost:5000/api/faculty/batch/${selectedBatch.id}`,
+        `${API_URL}/api/faculty/batch/${selectedBatch.id}`,
       );
       const refreshedBatch = batchResponse.data;
 

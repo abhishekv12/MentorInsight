@@ -1,3 +1,4 @@
+import API_URL from "../config";
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -135,7 +136,7 @@ const ParentDashboard = () => {
     if (!session.rollNo || !session.mobile) return;
     const fetchReport = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/parent/student-report', {
+        const res = await axios.get('${API_URL}/api/parent/student-report', {
           params: { rollNo: session.rollNo, mobile: session.mobile },
         });
         setStudent(res.data.studentData);
@@ -939,3 +940,4 @@ const ParentDashboard = () => {
 };
 
 export default ParentDashboard;
+

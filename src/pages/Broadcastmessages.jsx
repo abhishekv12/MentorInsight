@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../config";
 
 // ────────────────────────────────────────────────
 // BroadcastMessages — Student View
@@ -54,7 +55,7 @@ const BroadcastMessages = ({ student, batchInfo }) => {
       try {
         if (batchInfo?._id) {
           const res = await axios.get(
-            `http://localhost:5000/api/student/broadcasts/${batchInfo._id}/${student?.division || "all"}`
+            `${API_URL}/api/student/broadcasts/${batchInfo._id}/${student?.division || "all"}`
           );
           if (res.data.success && res.data.messages.length > 0) {
             setMessages(res.data.messages);

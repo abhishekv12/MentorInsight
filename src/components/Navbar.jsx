@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import axios from "axios";
+import API_URL from "../../config";
 
 const Navbar = () => {
   const [user, setUser]           = useState(null);
@@ -29,13 +30,13 @@ const Navbar = () => {
 
         // ── Then try the API for students ──
         try {
-          const res = await axios.get(`http://localhost:5000/api/users/${cur.uid}`);
+          const res = await axios.get(`${API_URL}/api/users/${cur.uid}`);
           if (res.data?.role) { setUserRole(res.data.role); return; }
         } catch {}
 
         // ── Final fallback: check by email in case uid mismatched ──
         try {
-          const res = await axios.get(`http://localhost:5000/api/users/check-email/${cur.email}`);
+          const res = await axios.get(`${API_URL}/api/users/check-email/${cur.email}`);
           if (res.data?.role) setUserRole(res.data.role);
         } catch {}
 

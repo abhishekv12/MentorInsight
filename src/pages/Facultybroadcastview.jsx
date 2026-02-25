@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../config";
 
 // ============================================================
 // FacultyBroadcastView.jsx
@@ -53,7 +54,7 @@ const FacultyBroadcastView = ({ currentUser, batches, onBack }) => {
     setHistoryLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/faculty/broadcasts/${currentUser.uid}`
+        `${API_URL}/api/faculty/broadcasts/${currentUser.uid}`
       );
       if (res.data.success) setSentBroadcasts(res.data.broadcasts || []);
     } catch (err) {
@@ -90,7 +91,7 @@ const FacultyBroadcastView = ({ currentUser, batches, onBack }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/faculty/broadcast",
+        "${API_URL}/api/faculty/broadcast",
         payload
       );
       alert(

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from "../../../config";
 
 // ============================================================
 // FacultyReviewAdmin.jsx — v3 (Full Fix)
@@ -135,10 +136,10 @@ const FacultyReviewAdmin = ({ collegeName }) => {
     setLoading(true);
     try {
       const [tR, bR, rR, cR] = await Promise.allSettled([
-        axios.get(`http://localhost:5000/api/admin/teachers?college=${collegeName}`),
-        axios.get(`http://localhost:5000/api/admin/batches-with-teachers?college=${collegeName}`),
-        axios.get(`http://localhost:5000/api/admin/reviews?college=${collegeName}`),
-        axios.get(`http://localhost:5000/api/admin/review-campaigns?college=${collegeName}`),
+        axios.get(`${API_URL}/api/admin/teachers?college=${collegeName}`),
+        axios.get(`${API_URL}/api/admin/batches-with-teachers?college=${collegeName}`),
+        axios.get(`${API_URL}/api/admin/reviews?college=${collegeName}`),
+        axios.get(`${API_URL}/api/admin/review-campaigns?college=${collegeName}`),
       ]);
       if (tR.status==="fulfilled") setTeachers(tR.value.data?.teachers || []);
       if (bR.status==="fulfilled") setBatches(bR.value.data?.batches  || []);
@@ -177,11 +178,11 @@ const FacultyReviewAdmin = ({ collegeName }) => {
     };
     try {
       if (editingTeacher) {
-        await axios.put(`http://localhost:5000/api/admin/teachers/${editingTeacher._id}`, payload);
+        await axios.put(`${API_URL}/api/admin/teachers/${editingTeacher._id}`, payload);
         setTeachers(prev => prev.map(t => t._id===editingTeacher._id ? { ...t, ...payload } : t));
         showToast(`✅ ${payload.name} updated successfully`);
       } else {
-        const res = await axios.post("http://localhost:5000/api/admin/teachers", payload);
+        const res = await axios.post("${API_URL}/api/admin/teachers", payload);
         setTeachers(prev => [...prev, res.data.teacher]);
         showToast(`✅ ${payload.name} added successfully`);
       }
@@ -196,7 +197,7 @@ const FacultyReviewAdmin = ({ collegeName }) => {
     e.stopPropagation();
     if (!window.confirm(`Remove ${t.name} from the system?`)) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/teachers/${t._id}?college=${collegeName}`);
+      await axios.delete(`${API_URL}/api/admin/teachers/${t._id}?college=${collegeName}`);
       setTeachers(prev => prev.filter(x => x._id !== t._id));
       showToast(`🗑️ ${t.name} removed`);
     } catch {
@@ -209,7 +210,7 @@ const FacultyReviewAdmin = ({ collegeName }) => {
     if (!pickBatch || !pickIds.length) return;
     setAssigning(true);
     try {
-      await axios.post("http://localhost:5000/api/admin/assign-teachers",
+      await axios.post("${API_URL}/api/admin/assign-teachers",
         { batchId:pickBatch._id, teacherIds:pickIds, college:collegeName });
     } catch {}
     setBatches(prev => prev.map(b =>
@@ -223,7 +224,7 @@ const FacultyReviewAdmin = ({ collegeName }) => {
 
   const closeCampaign = async id => {
     if (!window.confirm("Close this campaign?")) return;
-    try { await axios.patch(`http://localhost:5000/api/admin/review-campaigns/${id}/close`); } catch {}
+    try { await axios.patch(`${API_URL}/api/admin/review-campaigns/${id}/close`); } catch {}
     setCampaigns(prev => prev.map(c => c._id===id ? {...c,status:"closed"} : c));
   };
 
