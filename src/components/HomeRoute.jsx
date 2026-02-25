@@ -7,7 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import Hero from "./Hero";
 import { VideoSection, FeaturesShowcase } from "./Videoandfeatures";
 import BentoShowcase from "./BentoShowcase";
-import CtaSection from "./CtaSection";
+import CtaSection from "./Ctasection";
 import Footer from "./Footer";
 
 // ============================================================
