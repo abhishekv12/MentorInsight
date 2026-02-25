@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import API_URL from "../../../config";
+import API_URL from "/src/config";
 // import './DashboardOverview.css'; // Uncomment if you have the CSS file
 
 const DashboardOverview = ({ stats }) => {

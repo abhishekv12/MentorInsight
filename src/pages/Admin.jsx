@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Admin.css";
 import FacultyReviewAdmin from "../components/admin-views/FacultyReviewAdmin";
 import "../components/faculty-review.css";
-import API_URL from "../config";
+import API_URL from "/src/config";
 
 // Sub-components
 import AdminSidebar from "../components/AdminSidebar";

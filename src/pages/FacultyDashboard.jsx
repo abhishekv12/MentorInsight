@@ -11,7 +11,7 @@ import FacultyDashboardFooter from "./FacultyDashboardFooter";
 import FacultyDashboardShowcase from "./FacultyDashboardShowcase";
 import FacultyShareHub from "./FacultyShareHub";
 import "./faculty-additions.css";
-import API_URL from "../config";
+import API_URL from "/src/config";
 
 function FacultyDashboard() {
   // --- NAVIGATION STATE ---

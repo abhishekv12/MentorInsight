@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import API_URL from "../config";
+import API_URL from "/src/config";
 
 import {
   Chart as ChartJS,

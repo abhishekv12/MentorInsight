@@ -3,7 +3,7 @@ import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import API_URL from "../config";
+import API_URL from "/src/config";
 
 const FacultyRegister = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
