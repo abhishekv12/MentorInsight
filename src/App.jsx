@@ -43,6 +43,7 @@ const Layout = ({ children }) => {
     "/faculty-selection",
     "/login/parent",       // ← hide navbar on parent login
     "/parent-dashboard",   // ← hide navbar on parent dashboard
+    "/admin/department",
   ];
   const showNavAndFooter = !hideOnRoutes.some((route) =>
     location.pathname.startsWith(route),

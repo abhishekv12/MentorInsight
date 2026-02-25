@@ -524,13 +524,64 @@ const StudentDashboard = () => {
   const [applyingSessionId, setApplyingSessionId] = useState(null);
 
   const [activeFacultyReviews, setActiveFacultyReviews] = useState([]);
-  const fetchActiveCampaigns = async (batchId) => {
+
+  const [sessionSubmittedIds, setSessionSubmittedIds] = useState(new Set());
+  const sessionSubmittedIdsRef = React.useRef(new Set()); // ← add this
+
+  const fetchActiveCampaigns = async (batchId, rollNo) => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/student/review-campaigns/${batchId}`,
-      );
+      // 1. Read localStorage FIRST so we never flash submitted campaigns
+      const localKey = `reviewed_${rollNo || student?.rollNo || ""}`;
+      let localSubmitted = new Set();
+      try {
+        const raw = localStorage.getItem(localKey);
+        if (raw) localSubmitted = new Set(JSON.parse(raw));
+      } catch {
+        /* ignore */
+      }
+
+      // Seed the ref and state with localStorage so they're ready immediately
+      localSubmitted.forEach((id) => sessionSubmittedIdsRef.current.add(id));
+      if (localSubmitted.size > 0) {
+        setSessionSubmittedIds((prev) => new Set([...prev, ...localSubmitted]));
+      }
+
+      // 2. Fetch active campaigns AND submitted reviews in parallel
+      const [campRes, subRes] = await Promise.allSettled([
+        axios.get(
+          `http://localhost:5000/api/student/review-campaigns/${batchId}`,
+        ),
+        rollNo
+          ? axios.get(
+              `http://localhost:5000/api/student/my-reviews/${rollNo}?studentId=${student?._id || ""}`,
+            )
+          : Promise.resolve({ data: { reviews: [] } }),
+      ]);
+
+      // 3. Build the full set of submitted campaign IDs
+      const submittedIds = new Set(localSubmitted); // start with localStorage
+      if (subRes.status === "fulfilled") {
+        (subRes.value.data.reviews || []).forEach((r) =>
+          submittedIds.add(r.campaignId),
+        );
+      }
+      // Also add anything already in the ref (from this session)
+      sessionSubmittedIdsRef.current.forEach((id) => submittedIds.add(id));
+
+      // Sync state and ref with merged submitted IDs
+      sessionSubmittedIdsRef.current = submittedIds;
+      setSessionSubmittedIds(new Set(submittedIds));
+
+      // 4. Filter out submitted campaigns before showing banner
+      const campaigns =
+        campRes.status === "fulfilled"
+          ? campRes.value.data.campaigns?.filter(
+              (c) => c.status === "active",
+            ) || []
+          : [];
+
       setActiveFacultyReviews(
-        res.data.campaigns?.filter((c) => c.status === "active") || [],
+        campaigns.filter((c) => !submittedIds.has(c._id)),
       );
     } catch {
       setActiveFacultyReviews([]);
@@ -539,7 +590,8 @@ const StudentDashboard = () => {
 
   useEffect(() => {
     if (student?.batchInfo?._id) {
-      fetchActiveCampaigns(student.batchInfo._id);
+      // Pass rollNo so we can check submitted reviews server-side
+      fetchActiveCampaigns(student.batchInfo._id, student.rollNo);
     }
   }, [student]);
 
@@ -2174,32 +2226,45 @@ const StudentDashboard = () => {
 
         <div className="tab-content">
           {/* FACULTY REVIEW ALERT BANNER */}
-          {activeFacultyReviews.length > 0 && activeTab !== "facultyReview" && (
-            <div
-              className="faculty-review-banner"
-              onClick={() => setActiveTab("facultyReview")}
-            >
-              <div className="frb-left">
-                <div className="frb-icon">
-                  <i className="fa-solid fa-star-half-stroke"></i>
+          {activeFacultyReviews.filter((r) => !sessionSubmittedIds.has(r._id))
+            .length > 0 &&
+            activeTab !== "facultyReview" && (
+              <div
+                className="faculty-review-banner"
+                onClick={() => setActiveTab("facultyReview")}
+              >
+                <div className="frb-left">
+                  <div className="frb-icon">
+                    <i className="fa-solid fa-star-half-stroke"></i>
+                  </div>
+                  <div className="frb-text">
+                    <strong>Faculty Review Open</strong>
+                    <span>
+                      {
+                        activeFacultyReviews.filter(
+                          (r) => !sessionSubmittedIds.has(r._id),
+                        ).length
+                      }{" "}
+                      active review
+                      {activeFacultyReviews.filter(
+                        (r) => !sessionSubmittedIds.has(r._id),
+                      ).length > 1
+                        ? "s"
+                        : ""}{" "}
+                      waiting for your feedback
+                    </span>
+                  </div>
                 </div>
-                <div className="frb-text">
-                  <strong>Faculty Review Open</strong>
-                  <span>
-                    {activeFacultyReviews.length} active review
-                    {activeFacultyReviews.length > 1 ? "s" : ""} waiting for
-                    your feedback
+                <div className="frb-right">
+                  <span className="frb-count">
+                    {activeFacultyReviews.length}
                   </span>
+                  <button className="frb-btn">
+                    Give Feedback <i className="fa-solid fa-arrow-right"></i>
+                  </button>
                 </div>
               </div>
-              <div className="frb-right">
-                <span className="frb-count">{activeFacultyReviews.length}</span>
-                <button className="frb-btn">
-                  Give Feedback <i className="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-            </div>
-          )}
+            )}
 
           {/* OVERVIEW TAB */}
           {activeTab === "overview" && (
@@ -2812,7 +2877,18 @@ const StudentDashboard = () => {
           {/* SESSIONS TAB */}
           {activeTab === "sessions" && renderSessions()}
           {activeTab === "facultyReview" && (
-            <FacultyReviewStudent student={student} />
+            <FacultyReviewStudent
+              student={student}
+              onReviewSubmitted={(campaignId) => {
+                sessionSubmittedIdsRef.current.add(campaignId); // ← update ref immediately
+                setSessionSubmittedIds(
+                  (prev) => new Set([...prev, campaignId]),
+                );
+                setActiveFacultyReviews((prev) =>
+                  prev.filter((c) => c._id !== campaignId),
+                );
+              }}
+            />
           )}
 
           {/* PROFILE TAB */}

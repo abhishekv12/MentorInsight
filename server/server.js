@@ -2239,15 +2239,22 @@ app.get("/api/student/review-campaigns/:batchId", async (req, res) => {
 // 10. SUBMIT STUDENT REVIEW
 app.post("/api/student/submit-review", async (req, res) => {
   try {
-    const { campaignId, studentId } = req.body;
-    // Prevent double submission
-    const existing = await FacultyReview.findOne({ campaignId, studentId });
+    const { campaignId, studentId, rollNo } = req.body;
+
+    // FIX: Check dedup by campaignId + (studentId OR rollNo)
+    const existing = await FacultyReview.findOne({
+      campaignId,
+      $or: [
+        { studentId: studentId },
+        ...(rollNo ? [{ rollNo: rollNo }] : []),
+      ],
+    });
     if (existing) {
       return res.status(409).json({ message: "You have already submitted a review for this campaign." });
     }
+
     const review = new FacultyReview(req.body);
     await review.save();
-    // Increment response count on campaign
     await ReviewCampaign.findByIdAndUpdate(campaignId, { $inc: { responses: 1 } });
     res.json({ success: true, review });
   } catch (err) {
@@ -2258,8 +2265,23 @@ app.post("/api/student/submit-review", async (req, res) => {
 // 11. GET STUDENT'S SUBMITTED REVIEWS (to mark campaigns as done)
 app.get("/api/student/my-reviews/:rollNo", async (req, res) => {
   try {
-    const reviews = await FacultyReview.find({ rollNo: req.params.rollNo })
-      .select("campaignId teacherName overallRating createdAt");
+    const { rollNo } = req.params;
+    const { studentId } = req.query; // ← add this
+
+    const orConditions = [
+      { rollNo: rollNo },
+      { studentId: rollNo },
+    ];
+
+    // ← Also match by MongoDB _id (catches anonymous reviews)
+    if (studentId && studentId !== rollNo) {
+      orConditions.push({ studentId: studentId });
+    }
+
+    const reviews = await FacultyReview.find({
+      $or: orConditions,
+    }).select("campaignId teacherName overallRating createdAt");
+
     res.json({ reviews });
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch reviews." });
