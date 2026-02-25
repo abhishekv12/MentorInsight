@@ -6,7 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 // Import all redesigned sections
 import Hero from "./Hero";
 import { VideoSection, FeaturesShowcase } from "./Videoandfeatures";
-import BentoShowcase from "./Bentoshowcase";
+import BentoShowcase from "./BentoShowcase";
 import CtaSection from "./CtaSection";
 import Footer from "./Footer";
 
