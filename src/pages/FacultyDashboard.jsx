@@ -7,7 +7,7 @@ import StudentDetailExam from "../components/StudentDetailExam";
 import BatchPromotion from "../components/Batchpromotion";
 import SessionAttendeesModal from "../components/SessionAttendeesModal";
 import FacultyBroadcastView from "./Facultybroadcastview";
-import FacultyDashboardfooter from "./FacultyDashboardfooter";
+import FacultyDashboardfooter from "./Facultydashboardfooter";
 import Facultydashboardshowcase from "./Facultydashboardshowcase";
 import Facultysharehub from "./Facultysharehub";
 import "./faculty-additions.css";
