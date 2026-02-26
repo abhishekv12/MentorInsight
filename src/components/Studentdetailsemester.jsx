@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './StudentDetailSemester.css';
+import './Studentdetailsemester.css';
 
 const StudentDetailSemester = ({ student, batch, onBack, onUpdate }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -653,4 +653,5 @@ const StudentDetailSemester = ({ student, batch, onBack, onUpdate }) => {
 };
 
 export default StudentDetailSemester;
+
 
