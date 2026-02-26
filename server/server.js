@@ -6,7 +6,10 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://mentor-insight.vercel.app'
+  ],
   credentials: true
 }));
 
