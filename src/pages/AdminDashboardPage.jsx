@@ -11,7 +11,7 @@ import AdminSidebar from "../components/AdminSidebar";
 import DashboardOverview from "../components/admin-views/DashboardOverview";
 import BatchManagement from "../components/admin-views/BatchManagement";
 import FacultyDirectory from "../components/admin-views/FacultyDirectory";
-import Admindashboardshowcase from "../components/admin-views/Admindashboardfooter";
+import Admindashboardshowcase from "../components/Admindashboardfooter";
 
 
 const AdminDashboard = () => {
