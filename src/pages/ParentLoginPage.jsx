@@ -35,7 +35,7 @@ const ParentLogin = () => {
     }
 
     try {
-      const res = await axios.post('${API_URL}/api/parent/login', {
+      const res = await axios.post(`${API_URL}/api/parent/login`, {
         rollNo: form.rollNo.trim(),
         mobile: form.mobile.trim(),
       });

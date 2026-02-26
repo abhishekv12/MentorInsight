@@ -60,7 +60,7 @@ const FacultyLogin = () => {
 
       // Upsert with real Firebase uid — this fixes the pre-assigned faculty case
       // where admin used uid:"generated_..." via assign-mentor
-      await axios.post("${API_URL}/api/users", {
+      await axios.post(`${API_URL}/api/users`, {
         uid: user.uid,
         email: user.email,
         name: user.displayName || checkRes.data.name,
@@ -88,14 +88,14 @@ const FacultyLogin = () => {
     setError("");
     setLoading(true);
     try {
-      const verifyRes = await axios.post("${API_URL}/api/faculty/verify-inst", {
+      const verifyRes = await axios.post(`${API_URL}/api/faculty/verify-inst`, {
         collegeName: formData.collegeName.trim(),
         instituteCode: formData.instituteCode.trim(),
       });
       if (!verifyRes.data.valid) throw new Error(verifyRes.data.message);
 
       const result = await signInWithPopup(auth, googleProvider);
-      await axios.post("${API_URL}/api/users", {
+      await axios.post(`${API_URL}/api/users`, {
         uid: result.user.uid,
         name: formData.facultyName || result.user.displayName,
         email: result.user.email,
