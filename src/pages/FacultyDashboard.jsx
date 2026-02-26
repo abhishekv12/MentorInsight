@@ -171,7 +171,7 @@ function FacultyDashboard() {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         try {
-          await axios.post("${API_URL}/api/users", {
+          await axios.post(`${API_URL}/api/users`, {
             uid: user.uid,
             email: user.email,
             name: user.displayName,
@@ -304,9 +304,7 @@ function FacultyDashboard() {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        "${API_URL}/api/faculty/create-batch",
-        {
+      const response = await axios.post(`${API_URL}/api/faculty/create-batch`, {
           batchName: createClassForm.batchName,
           academicYear: createClassForm.academicYear,
           course: createClassForm.course,
@@ -407,9 +405,7 @@ function FacultyDashboard() {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        "${API_URL}/api/faculty/send-session",
-        {
+      const response = await axios.post(`${API_URL}/api/faculty/send-session`, {
           ...sessionForm,
           facultyUid: currentUser.uid,
           facultyName: currentUser.displayName || currentUser.email,
