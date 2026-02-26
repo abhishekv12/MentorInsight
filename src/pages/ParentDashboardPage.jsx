@@ -136,7 +136,7 @@ const ParentDashboard = () => {
     if (!session.rollNo || !session.mobile) return;
     const fetchReport = async () => {
       try {
-        const res = await axios.get('${API_URL}/api/parent/student-report', {
+        const res = await axios.get(`${API_URL}/api/parent/student-report`, {
           params: { rollNo: session.rollNo, mobile: session.mobile },
         });
         setStudent(res.data.studentData);
