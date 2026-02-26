@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './BatchPromotion.css';
+import './Batchpromotion.css';
 import API_URL from "../../config";
 
 // Props: batches (ALL batches array), onClose, onPromotionComplete
