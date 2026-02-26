@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
-// LearningHub.jsx
+// Learninghub.jsx
 // Student-side Learning Resources tab
 // Faculty share images, videos, links, notes → students see them here
-// Usage: <LearningHub student={student} />
+// Usage: <Learninghub student={student} />
 // Add "learning" tab to StudentDashboard sidebar
 // ============================================================
 
@@ -294,7 +294,7 @@ const ResourceModal = ({ resource, onClose }) => {
 };
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────
-const LearningHub = ({ student }) => {
+const Learninghub = ({ student }) => {
   const [resources, setResources] = useState([]);
   const [loading, setLoading]     = useState(true);
   const [filter, setFilter]       = useState("all");
@@ -460,4 +460,5 @@ const LearningHub = ({ student }) => {
   );
 };
 
-export default LearningHub;
+export default Learninghub;
+

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ────────────────────────────────────────────────
-// BroadcastMessages — Student View
+// Broadcastmessages — Student View
 // Reads messages sent by the mentor/faculty via API
 // Falls back to localStorage demo messages when offline
 // ────────────────────────────────────────────────
@@ -36,7 +36,7 @@ const PRIORITY_STYLE = {
   info:   { color: "#06b6d4", bg: "#ecfeff", border: "#a5f3fc", badge: "ℹ️ Info"   },
 };
 
-const BroadcastMessages = ({ student, batchInfo }) => {
+const Broadcastmessages = ({ student, batchInfo }) => {
   const storageKey = `broadcasts_${student?.rollNo}`;
 
   const [messages, setMessages] = useState([]);
@@ -225,4 +225,5 @@ const BroadcastMessages = ({ student, batchInfo }) => {
   );
 };
 
-export default BroadcastMessages;
+export default Broadcastmessages;
+

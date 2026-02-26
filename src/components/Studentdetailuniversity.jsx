@@ -738,3 +738,4 @@ const StudentDetailUniversity = ({ student, batch, onBack, onUpdate }) => {
 };
 
 export default StudentDetailUniversity;
+

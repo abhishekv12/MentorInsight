@@ -7,7 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import Hero from "./Hero";
 import { VideoSection, FeaturesShowcase } from "./Videoandfeatures";
 import BentoShowcase from "./BentoShowcase";
-import CtaSection from "./Ctasection";
+import Ctasection from "./Ctasection";
 import Footer from "./Footer";
 
 // ============================================================
@@ -88,9 +88,10 @@ const HomeRoute = () => {
       <BentoShowcase />
 
       {/* 5. Testimonials + trust + CTA */}
-      <CtaSection />
+      <Ctasection />
     </>
   );
 };
 
 export default HomeRoute;
+

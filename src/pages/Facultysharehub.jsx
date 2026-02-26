@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
-// FacultyShareHub.jsx
+// Facultysharehub.jsx
 // Faculty-side Share Resources view
 // Add to FacultyDashboard sidebar: "Share" nav item → currentView="shareHub"
-// Usage: <FacultyShareHub currentUser={currentUser} batches={batches} onBack={() => setCurrentView("dashboard")} />
+// Usage: <Facultysharehub currentUser={currentUser} batches={batches} onBack={() => setCurrentView("dashboard")} />
 // ============================================================
 
 const RESOURCE_TYPES = [
@@ -52,7 +52,7 @@ const MOCK_SHARED = [
 // ─── Type meta helper ─────────────────────────────────────────
 const getMeta = (type) => RESOURCE_TYPES.find(r => r.key === type) || RESOURCE_TYPES[2];
 
-const FacultyShareHub = ({ currentUser, batches = [], onBack }) => {
+const Facultysharehub = ({ currentUser, batches = [], onBack }) => {
   const [subView, setSubView] = useState("list"); // "list" | "compose"
 
   // ── compose form ──────────────────────────────────────────
@@ -500,4 +500,5 @@ const FacultyShareHub = ({ currentUser, batches = [], onBack }) => {
   );
 };
 
-export default FacultyShareHub;
+export default Facultysharehub;
+

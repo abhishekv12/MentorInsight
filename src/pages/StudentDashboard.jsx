@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 import {
   Chart as ChartJS,
@@ -20,14 +20,14 @@ import {
 } from "chart.js";
 import { Bar, Line, Pie, Doughnut, Radar } from "react-chartjs-2";
 import "./StudentDashboard.css";
-import TodoWidget from "./Todowidget";
-import NotificationBell from "./Notificationbell";
-import DocumentVault from "./Documentvault";
-import CertificationsWidget from "./Certificationswidget";
-import BroadcastMessages from "./Broadcastmessages";
-import DashboardFooter from "./Dashboardfooter";
-import LearningHub from "./Learninghub";
-import StudentDashboardShowcase from "./Studentdashboardshowcase";
+import Todowidget from "./Todowidget";
+import Notificationbell from "./Notificationbell";
+import Documentvault from "./Documentvault";
+import Certificationswidget from "./Certificationswidget";
+import Broadcastmessages from "./Broadcastmessages";
+import Dashboardfooter from "./Dashboardfooter";
+import Learninghub from "./Learninghub";
+import Studentdashboardshowcase from "./Studentdashboardshowcase";
 import "./student-learning.css";
 import FacultyReviewStudent from "../components/FacultyReviewStudent";
 import "../components/faculty-review.css";
@@ -2218,7 +2218,7 @@ const StudentDashboard = () => {
                 <span>Enroll: {student?.enrollmentNo || "N/A"}</span>
               </div>
             </div>
-            <NotificationBell
+            <Notificationbell
               student={student}
               sessions={sessions}
               attendanceData={getAttendanceByYearData()}
@@ -2363,7 +2363,7 @@ const StudentDashboard = () => {
               </div>
 
               {/* --- NEW SHOWCASE COMPONENT ADDED HERE --- */}
-              <StudentDashboardShowcase
+              <Studentdashboardshowcase
                 sessions={sessions}
                 student={student}
                 setActiveTab={setActiveTab}
@@ -3929,26 +3929,26 @@ const StudentDashboard = () => {
           )}
 
           {activeTab === "tasks" && (
-            <TodoWidget studentRollNo={student?.rollNo} />
+            <Todowidget studentRollNo={student?.rollNo} />
           )}
 
           {activeTab === "messages" && (
-            <BroadcastMessages
+            <Broadcastmessages
               student={student}
               batchInfo={student?.batchInfo}
             />
           )}
 
           {activeTab === "vault" && (
-            <DocumentVault studentRollNo={student?.rollNo} />
+            <Documentvault studentRollNo={student?.rollNo} />
           )}
 
           {activeTab === "achievements" && (
-            <CertificationsWidget studentRollNo={student?.rollNo} />
+            <Certificationswidget studentRollNo={student?.rollNo} />
           )}
-          {activeTab === "learning" && <LearningHub student={student} />}
+          {activeTab === "learning" && <Learninghub student={student} />}
         </div>
-        <DashboardFooter
+        <Dashboardfooter
           collegeName={student?.batchInfo?.collegeName || student?.collegeName}
         />
       </div>
@@ -3957,3 +3957,4 @@ const StudentDashboard = () => {
 };
 
 export default StudentDashboard;
+

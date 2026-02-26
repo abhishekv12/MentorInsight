@@ -9,7 +9,7 @@ const VAULT_CATEGORIES = [
   { key: "other",       label: "Other Docs",     icon: "fa-folder-open",      color: "#f59e0b", accept: "*" },
 ];
 
-const DocumentVault = ({ studentRollNo }) => {
+const Documentvault = ({ studentRollNo }) => {
   const storageKey = `doc_vault_${studentRollNo || "student"}`;
   const fileInputRefs = useRef({});
 
@@ -273,4 +273,5 @@ const DocumentVault = ({ studentRollNo }) => {
   );
 };
 
-export default DocumentVault;
+export default Documentvault;
+

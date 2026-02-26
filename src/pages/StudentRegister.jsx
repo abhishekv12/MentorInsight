@@ -1,4 +1,4 @@
-import API_URL from "/src/config";
+import API_URL from "../../config";
 import React, { useState } from 'react';
 import { auth } from '../firebase'; // Keep Firebase for Login Security
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -90,4 +90,5 @@ const StudentRegister = () => {
 };
 
 export default StudentRegister;
+
 

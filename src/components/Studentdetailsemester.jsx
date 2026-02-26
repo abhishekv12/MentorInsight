@@ -653,3 +653,4 @@ const StudentDetailSemester = ({ student, batch, onBack, onUpdate }) => {
 };
 
 export default StudentDetailSemester;
+

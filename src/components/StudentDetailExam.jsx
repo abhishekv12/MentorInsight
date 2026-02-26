@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./StudentDetailExam.css";
 import StudentProfileForm from "./StudentProfileForm";
 import StudentInsightPanel from "./StudentInsightPanel";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 const StudentDetailExam = ({ student, batch, onBack, onUpdate, sessions }) => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -2382,3 +2382,4 @@ const StudentDetailExam = ({ student, batch, onBack, onUpdate, sessions }) => {
 };
 
 export default StudentDetailExam;
+

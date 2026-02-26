@@ -3,7 +3,7 @@ import { auth, googleProvider } from '../firebase';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
 // StudentLogin.jsx — strict email match against batch record
@@ -221,3 +221,4 @@ const StudentLogin = () => {
 };
 
 export default StudentLogin;
+

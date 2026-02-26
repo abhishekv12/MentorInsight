@@ -17,7 +17,7 @@ const BADGE_COLORS = [
   { bg: "#ffe4e6", text: "#9f1239", border: "#fecdd3" },
 ];
 
-const CertificationsWidget = ({ studentRollNo }) => {
+const Certificationswidget = ({ studentRollNo }) => {
   const storageKey = `certs_${studentRollNo || "student"}`;
 
   const [certs, setCerts] = useState(() => {
@@ -354,4 +354,5 @@ const CertificationsWidget = ({ studentRollNo }) => {
   );
 };
 
-export default CertificationsWidget;
+export default Certificationswidget;
+

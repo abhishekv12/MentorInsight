@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
 // FacultyBroadcastView.jsx
 // Allows faculty to compose and send broadcast messages to
-// students — feeds directly into the student BroadcastMessages widget.
+// students — feeds directly into the student Broadcastmessages widget.
 // Props:
 //   currentUser   — firebase user with .uid, .displayName, .email
 //   batches       — array of batch objects from faculty's classes
@@ -433,3 +433,4 @@ const inputStyle = {
 };
 
 export default FacultyBroadcastView;
+

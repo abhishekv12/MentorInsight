@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const DashboardFooter = ({ collegeName }) => {
+const Dashboardfooter = ({ collegeName }) => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -207,4 +207,5 @@ const DashboardFooter = ({ collegeName }) => {
   );
 };
 
-export default DashboardFooter;
+export default Dashboardfooter;
+

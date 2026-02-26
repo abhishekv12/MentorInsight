@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // ============================================================
-// CtaSection.jsx — Refined Luxury Minimalism
+// Ctasection.jsx — Refined Luxury Minimalism
 // Testimonials + Trust + Final CTA
 // ============================================================
 
@@ -36,7 +36,7 @@ const TRUST_ITEMS = [
   { icon: "fa-headset",        label: "Email Support" },
 ];
 
-const CtaSection = () => {
+const Ctasection = () => {
   return (
     <>
       <style>{`
@@ -359,4 +359,5 @@ const CtaSection = () => {
   );
 };
 
-export default CtaSection;
+export default Ctasection;
+

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
 // ============================================================
-// AdminDashboardFooter.jsx
+// AdminDashboardfooter.jsx
 // Rich footer for the admin panel — shown at the bottom of
 // every admin view (place at bottom of erp-main-content)
 //
 // Usage in AdminDashboard.jsx:
-//   import AdminDashboardFooter from './AdminDashboardFooter';
+//   import AdminDashboardfooter from './AdminDashboardfooter';
 //   // Inside the JSX (below erp-view-container):
-//   <AdminDashboardFooter collegeName={collegeName} adminEmail={adminEmail} />
+//   <AdminDashboardfooter collegeName={collegeName} adminEmail={adminEmail} />
 // ============================================================
 
-const AdminDashboardFooter = ({ collegeName = "", adminEmail = "" }) => {
+const AdminDashboardfooter = ({ collegeName = "", adminEmail = "" }) => {
   const [modal, setModal]   = useState(null); // "about" | "privacy" | "contact" | "shortcuts"
   const year = new Date().getFullYear();
 
@@ -314,4 +314,5 @@ const AdminDashboardFooter = ({ collegeName = "", adminEmail = "" }) => {
   );
 };
 
-export default AdminDashboardFooter;
+export default AdminDashboardfooter;
+

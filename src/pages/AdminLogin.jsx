@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, googleProvider } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 const AdminLogin = () => {
   const [mode, setMode] = useState("login");
@@ -385,3 +385,4 @@ const AdminLogin = () => {
 };
 
 export default AdminLogin;
+

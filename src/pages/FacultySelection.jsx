@@ -160,3 +160,4 @@ const FacultySelection = () => {
 };
 
 export default FacultySelection;
+

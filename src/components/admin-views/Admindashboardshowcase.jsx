@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
-// AdminDashboardShowcase.jsx
+// Admindashboardshowcase.jsx
 // Drop-in replacement / enhancement for DashboardOverview.jsx
 //
 // Usage in AdminDashboard.jsx:
-//   import AdminDashboardShowcase from './admin-views/AdminDashboardShowcase';
+//   import Admindashboardshowcase from './admin-views/Admindashboardshowcase';
 //   {activeView === 'overview' && (
-//     <AdminDashboardShowcase stats={stats} collegeName={collegeName} setActiveView={setActiveView} />
+//     <Admindashboardshowcase stats={stats} collegeName={collegeName} setActiveView={setActiveView} />
 //   )}
 // ============================================================
 
@@ -62,7 +62,7 @@ const STATIC_TIPS = [
 ];
 
 // ══════════════════════════════════════════════════════════════
-const AdminDashboardShowcase = ({ stats = {}, collegeName = "", setActiveView }) => {
+const Admindashboardshowcase = ({ stats = {}, collegeName = "", setActiveView }) => {
   const greeting = getGreeting();
   const [data, setData] = useState({ batches: [], faculty: [], students: [], activity: [] });
   const [loading, setLoading] = useState(true);
@@ -557,4 +557,5 @@ const AdminDashboardShowcase = ({ stats = {}, collegeName = "", setActiveView })
   );
 };
 
-export default AdminDashboardShowcase;
+export default Admindashboardshowcase;
+

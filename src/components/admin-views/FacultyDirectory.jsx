@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 const FacultyDirectory = () => {
   const [faculty, setFaculty] = useState([]);
@@ -50,3 +50,4 @@ const FacultyDirectory = () => {
 };
 
 export default FacultyDirectory;
+

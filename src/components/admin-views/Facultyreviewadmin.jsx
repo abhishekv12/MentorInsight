@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
-// FacultyReviewAdmin.jsx — v3 (Full Fix)
+// Facultyreviewadmin.jsx — v3 (Full Fix)
 //
 // KEY FIXES:
 //  • Teachers fetched from real API (GET /api/admin/teachers)
@@ -83,7 +83,7 @@ const Input = ({ label, value, onChange, placeholder, type="text", required }) =
 );
 
 // ══════════════════════════════════════════════════════════
-const FacultyReviewAdmin = ({ collegeName }) => {
+const Facultyreviewadmin = ({ collegeName }) => {
   const [tab, setTab]           = useState("overview");
   const [teachers, setTeachers] = useState([]);
   const [batches,  setBatches]  = useState([]);
@@ -1173,4 +1173,5 @@ const FacultyReviewAdmin = ({ collegeName }) => {
   );
 };
 
-export default FacultyReviewAdmin;
+export default Facultyreviewadmin;
+

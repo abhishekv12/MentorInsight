@@ -157,3 +157,4 @@ const AdminSidebar = ({ activeView, setActiveView, collegeName }) => {
 };
 
 export default AdminSidebar;
+

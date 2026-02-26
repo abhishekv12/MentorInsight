@@ -1,4 +1,4 @@
-import API_URL from "/src/config";
+import API_URL from "../../config";
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -940,4 +940,5 @@ const ParentDashboard = () => {
 };
 
 export default ParentDashboard;
+
 

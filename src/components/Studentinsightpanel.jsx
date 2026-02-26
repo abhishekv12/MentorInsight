@@ -502,3 +502,4 @@ const fileRowStyle = {
 };
 
 export default StudentInsightPanel;
+

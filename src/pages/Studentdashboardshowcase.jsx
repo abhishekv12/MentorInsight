@@ -1,10 +1,10 @@
 import React from "react";
 
 // ============================================================
-// StudentDashboardShowcase.jsx
+// Studentdashboardshowcase.jsx
 // Renders INSIDE the Overview tab (activeTab === "overview")
 // Shows: Upcoming Session Highlight, Quick Actions, Tip strip
-// Usage: <StudentDashboardShowcase sessions={sessions} student={student} setActiveTab={setActiveTab} appliedSessions={appliedSessions} />
+// Usage: <Studentdashboardshowcase sessions={sessions} student={student} setActiveTab={setActiveTab} appliedSessions={appliedSessions} />
 // ============================================================
 
 const timeUntil = (dateStr, timeStr) => {
@@ -33,7 +33,7 @@ const TYPE_META = {
   other:     { icon: "fa-calendar",        color: "#94a3b8" },
 };
 
-const StudentDashboardShowcase = ({ sessions = [], student, setActiveTab, appliedSessions = new Set() }) => {
+const Studentdashboardshowcase = ({ sessions = [], student, setActiveTab, appliedSessions = new Set() }) => {
   const now = new Date();
 
   // ── Get upcoming sessions ──────────────────────────────
@@ -271,4 +271,5 @@ const StudentDashboardShowcase = ({ sessions = [], student, setActiveTab, applie
   );
 };
 
-export default StudentDashboardShowcase;
+export default Studentdashboardshowcase;
+

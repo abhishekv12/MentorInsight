@@ -14,7 +14,7 @@ const PRIORITY_CONFIG = {
   low:    { label: "Low",    color: "#22c55e", bg: "#f0fdf4", border: "#bbf7d0" },
 };
 
-const TodoWidget = ({ studentRollNo }) => {
+const Todowidget = ({ studentRollNo }) => {
   const storageKey = `todo_tasks_${studentRollNo || "student"}`;
 
   const [tasks, setTasks] = useState(() => {
@@ -233,4 +233,5 @@ const TodoWidget = ({ studentRollNo }) => {
   );
 };
 
-export default TodoWidget;
+export default Todowidget;
+

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const FacultyDashboardFooter = ({ currentUser, assignedDepartment }) => {
+const FacultyDashboardfooter = ({ currentUser, assignedDepartment }) => {
   const [modal, setModal] = useState(null);
 
   const facultyName = currentUser?.displayName || currentUser?.email?.split("@")[0] || "Faculty";
@@ -257,4 +257,5 @@ const FacultyDashboardFooter = ({ currentUser, assignedDepartment }) => {
   );
 };
 
-export default FacultyDashboardFooter;
+export default FacultyDashboardfooter;
+

@@ -7,9 +7,9 @@ import StudentDetailExam from "../components/StudentDetailExam";
 import BatchPromotion from "../components/Batchpromotion";
 import SessionAttendeesModal from "../components/SessionAttendeesModal";
 import FacultyBroadcastView from "./Facultybroadcastview";
-import FacultyDashboardFooter from "./Facultydashboardfooter";
-import FacultyDashboardShowcase from "./Facultydashboardshowcase";
-import FacultyShareHub from "./Facultysharehub";
+import FacultyDashboardfooter from "./FacultyDashboardfooter";
+import Facultydashboardshowcase from "./Facultydashboardshowcase";
+import Facultysharehub from "./Facultysharehub";
 import "./faculty-additions.css";
 import API_URL from "../config";
 
@@ -689,7 +689,7 @@ function FacultyDashboard() {
             </div>
 
             {/* Showcase Component is now correctly inside the else block */}
-            <FacultyDashboardShowcase
+            <Facultydashboardshowcase
               batches={batches}
               mySessions={mySessions}
               currentUser={currentUser}
@@ -1628,7 +1628,7 @@ function FacultyDashboard() {
             />
           )}
           {currentView === "shareHub" && (
-            <FacultyShareHub
+            <Facultysharehub
               currentUser={currentUser}
               batches={batches}
               onBack={() => setCurrentView("dashboard")}
@@ -1637,7 +1637,7 @@ function FacultyDashboard() {
         </div>
 
         {/* ✅ FOOTER ADDED HERE (After content-wrapper, Inside os-main) */}
-        <FacultyDashboardFooter
+        <FacultyDashboardfooter
           currentUser={currentUser}
           assignedDepartment={assignedDepartment}
         />
@@ -1925,3 +1925,4 @@ function FacultyDashboard() {
 }
 
 export default FacultyDashboard;
+

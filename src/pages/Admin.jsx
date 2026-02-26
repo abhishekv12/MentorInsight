@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Admin.css";
-import FacultyReviewAdmin from "../components/admin-views/Facultyreviewadmin";
+import Facultyreviewadmin from "../components/admin-views/Facultyreviewadmin";
 import "../components/faculty-review.css";
 import API_URL from "../../config";
 
@@ -11,8 +11,8 @@ import AdminSidebar from "../components/AdminSidebar";
 import DashboardOverview from "../components/admin-views/DashboardOverview";
 import BatchManagement from "../components/admin-views/BatchManagement";
 import FacultyDirectory from "../components/admin-views/FacultyDirectory";
-import AdminDashboardShowcase from "../components/admin-views/Admindashboardshowcase";
-import AdminDashboardFooter from "../components/Admindashboardfooter";
+import Admindashboardshowcase from "../components/admin-views/Admindashboardshowcase";
+import AdminDashboardfooter from "../components/AdminDashboardfooter";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -99,7 +99,7 @@ const AdminDashboard = () => {
 
         <div className="erp-view-container">
           {activeView === "overview" && (
-            <AdminDashboardShowcase
+            <Admindashboardshowcase
               stats={stats}
               collegeName={collegeName}
               setActiveView={setActiveView}
@@ -108,10 +108,10 @@ const AdminDashboard = () => {
           {activeView === "batches" && <BatchManagement />}
           {activeView === "faculty" && <FacultyDirectory />}
           {activeView === "reviews" && (
-            <FacultyReviewAdmin collegeName={collegeName} />
+            <Facultyreviewadmin collegeName={collegeName} />
           )}
         </div>
-        <AdminDashboardFooter
+        <AdminDashboardfooter
           collegeName={collegeName}
           adminEmail={localStorage.getItem("adminEmail") || ""}
         />
@@ -121,3 +121,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+

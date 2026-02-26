@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
 // FacultyReviewStudent.jsx
@@ -507,3 +507,4 @@ const FacultyReviewStudent = ({ student, onReviewSubmitted }) => {
 };
 
 export default FacultyReviewStudent;
+

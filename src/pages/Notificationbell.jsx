@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const NotificationBell = ({ student, sessions, attendanceData }) => {
+const Notificationbell = ({ student, sessions, attendanceData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [readIds, setReadIds] = useState(() => {
@@ -201,4 +201,5 @@ const NotificationBell = ({ student, sessions, attendanceData }) => {
   );
 };
 
-export default NotificationBell;
+export default Notificationbell;
+

@@ -1,12 +1,12 @@
 import React from "react";
 
 // ============================================================
-// FacultyDashboardShowcase.jsx
+// Facultydashboardshowcase.jsx
 // Renders below class cards on the main dashboard view
-// Usage: <FacultyDashboardShowcase batches={batches} mySessions={mySessions} currentUser={currentUser} />
+// Usage: <Facultydashboardshowcase batches={batches} mySessions={mySessions} currentUser={currentUser} />
 // ============================================================
 
-const FacultyDashboardShowcase = ({ batches = [], mySessions = [], currentUser }) => {
+const Facultydashboardshowcase = ({ batches = [], mySessions = [], currentUser }) => {
   const totalStudents = batches.reduce((sum, b) => sum + (b.students?.length || 0), 0);
   const totalSessions = mySessions.length;
   const recentSessions = [...mySessions]
@@ -292,4 +292,5 @@ const FacultyDashboardShowcase = ({ batches = [], mySessions = [], currentUser }
   );
 };
 
-export default FacultyDashboardShowcase;
+export default Facultydashboardshowcase;
+

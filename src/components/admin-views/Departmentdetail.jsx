@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Departmentdetail.css';
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // ============================================================
 // DepartmentDetail.jsx — Enhanced with per-batch Review Posting
@@ -607,3 +607,4 @@ const DepartmentDetail = () => {
 };
 
 export default DepartmentDetail;
+
