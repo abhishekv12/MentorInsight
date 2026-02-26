@@ -112,7 +112,7 @@ const AdminDashboard = () => {
             <Facultyreviewadmin collegeName={collegeName} />
           )}
         </div>
-        <AdminDashboardfooter
+        <Admindashboardfooter
           collegeName={collegeName}
           adminEmail={localStorage.getItem("adminEmail") || ""}
         />
