@@ -4,15 +4,15 @@ import axios from "axios";
 import "./Admin.css";
 import FacultyReviewAdmin from "../components/admin-views/Facultyreviewadmin";
 import "../components/faculty-review.css";
-import API_URL from "/src/config";
+import API_URL from "../../config";
 
 // Sub-components
 import AdminSidebar from "../components/AdminSidebar";
 import DashboardOverview from "../components/admin-views/DashboardOverview";
 import BatchManagement from "../components/admin-views/BatchManagement";
 import FacultyDirectory from "../components/admin-views/FacultyDirectory";
-import AdminDashboardShowcase from "../components/admin-views/AdminDashboardShowcase";
-import AdminDashboardFooter from "../components/AdminDashboardFooter";
+import AdminDashboardShowcase from "../components/admin-views/Admindashboardshowcase";
+import AdminDashboardFooter from "../components/Admindashboardfooter";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
