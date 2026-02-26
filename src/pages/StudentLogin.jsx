@@ -21,7 +21,7 @@ const StudentLogin = () => {
     setLoading(true);
     try {
       // Step 1 — verify roll + mobile against batch roster
-      const verifyRes = await axios.post('${API_URL}/api/student/verify-login', {
+      const verifyRes = await axios.post(`${API_URL}/api/student/verify-login`, {
         rollNo: credentials.rollNo,
         mobile: credentials.mobile,
       });
@@ -65,7 +65,7 @@ const StudentLogin = () => {
       }
 
       // Step 4 — Upsert user record with the real uid
-      await axios.post('${API_URL}/api/users', {
+      await axios.post(`${API_URL}/api/users`, {
         uid: result.user.uid,
         name: studentData.name,
         email: googleEmail,
