@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 
-// ============================================================
-// BentoShowcase.jsx — Refined Luxury Minimalism
-// How it Works + Mentor-Mentee Book Showcase
-// ============================================================
-
 const HOW_STEPS = [
   {
     num: "01",
@@ -116,7 +111,6 @@ const BentoShowcase = () => {
           border-top: 1px solid var(--rule);
           position: relative;
         }
-        /* Hairline grid overlay */
         .lp-how-section::before {
           content: '';
           position: absolute; inset: 0;
@@ -127,6 +121,47 @@ const BentoShowcase = () => {
           pointer-events: none;
         }
 
+        .lp-section-inner-wide {
+          max-width: 1280px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 1;
+        }
+
+        .lp-section-label {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          font-family: 'DM Mono', monospace;
+          font-size: 9px;
+          color: var(--accent);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+        }
+        .lp-section-label-line {
+          width: 20px; height: 1px;
+          background: var(--accent);
+          display: inline-block;
+        }
+        .lp-section-h2 {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(36px, 4vw, 56px);
+          font-weight: 600;
+          color: var(--cream);
+          margin: 0 0 14px;
+          letter-spacing: -0.02em;
+          line-height: 1.05;
+        }
+        .lp-section-sub {
+          font-family: 'Manrope', sans-serif;
+          font-size: 15px;
+          color: var(--muted);
+          line-height: 1.8;
+          margin: 0 0 52px;
+          max-width: 560px;
+        }
+
         .lp-how-steps {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -135,13 +170,11 @@ const BentoShowcase = () => {
           border: 1px solid var(--rule);
           border-radius: 10px;
           overflow: hidden;
-          position: relative; z-index: 1;
         }
         .lp-step-card {
           background: var(--ink);
           padding: 40px 36px;
           transition: background 0.2s;
-          position: relative;
         }
         .lp-step-card:hover { background: rgba(255,255,255,0.02); }
         .lp-step-num {
@@ -188,7 +221,6 @@ const BentoShowcase = () => {
           overflow: hidden;
         }
 
-        /* Sidebar nav */
         .lp-book-nav {
           background: var(--ink);
           border-right: 1px solid var(--rule);
@@ -221,6 +253,7 @@ const BentoShowcase = () => {
           transition: all 0.16s;
           text-align: left;
           width: 100%;
+          -webkit-tap-highlight-color: transparent;
         }
         .lp-book-tab:hover:not(.active) { background: rgba(255,255,255,0.03); color: var(--muted-2); }
         .lp-book-tab.active { background: var(--accent-dim); color: var(--cream); }
@@ -230,7 +263,6 @@ const BentoShowcase = () => {
           font-size: 11px; flex-shrink: 0;
         }
 
-        /* Content panel */
         .lp-book-panel {
           padding: 44px 48px;
           display: grid;
@@ -268,7 +300,6 @@ const BentoShowcase = () => {
           line-height: 1.8; margin: 0;
         }
 
-        /* Right: mock data */
         .lp-book-mock-label {
           font-family: 'DM Mono', monospace;
           font-size: 9px; color: var(--muted);
@@ -279,16 +310,19 @@ const BentoShowcase = () => {
           display: flex; justify-content: space-between; align-items: center;
           padding: 10px 12px;
           border-bottom: 1px solid var(--rule);
+          gap: 12px;
         }
         .lp-kv-row:first-of-type { border-top: 1px solid var(--rule); }
         .lp-kv-label {
           font-family: 'DM Mono', monospace;
           font-size: 9.5px; color: var(--muted);
           letter-spacing: 0.06em; text-transform: uppercase;
+          flex-shrink: 0;
         }
         .lp-kv-val {
           font-family: 'Manrope', sans-serif;
           font-size: 12px; color: var(--cream-2); font-weight: 600;
+          text-align: right; word-break: break-word;
         }
         .lp-bar-row { margin-bottom: 14px; }
         .lp-bar-head {
@@ -344,12 +378,64 @@ const BentoShowcase = () => {
           letter-spacing: 0.06em;
         }
 
+        /* ── RESPONSIVE ────────────────── */
         @media(max-width:900px) {
           .lp-how-steps { grid-template-columns: 1fr; }
-          .lp-book-layout { grid-template-columns: 1fr; }
-          .lp-book-nav { flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--rule); }
-          .lp-book-panel { grid-template-columns: 1fr; }
+          .lp-step-card { padding: 28px 24px; }
+
+          .lp-book-layout {
+            grid-template-columns: 1fr;
+          }
+          .lp-book-nav {
+            flex-direction: row;
+            flex-wrap: wrap;
+            border-right: none;
+            border-bottom: 1px solid var(--rule);
+            padding: 12px 10px;
+            gap: 4px;
+          }
           .lp-book-nav-heading { display: none; }
+          .lp-book-tab {
+            flex: 0 0 auto;
+            width: auto;
+            font-size: 11px;
+            padding: 8px 10px;
+            gap: 6px;
+          }
+          .lp-book-tab span:last-of-type { display: none; }
+          .lp-book-tab-icon { width: 22px; height: 22px; font-size: 10px; }
+
+          .lp-book-panel {
+            grid-template-columns: 1fr;
+            gap: 28px;
+            padding: 28px 24px;
+          }
+        }
+
+        @media(max-width:600px) {
+          .lp-how-section,
+          .lp-book-section {
+            padding: 70px 5vw;
+          }
+          .lp-section-sub { margin-bottom: 36px; font-size: 14px; }
+          .lp-step-card { padding: 24px 20px; }
+          .lp-step-title { font-size: 19px; }
+          .lp-step-desc { font-size: 13px; }
+
+          .lp-book-nav {
+            padding: 10px 8px;
+            gap: 4px;
+          }
+          .lp-book-tab {
+            padding: 7px 9px;
+            font-size: 10.5px;
+          }
+          .lp-book-panel {
+            padding: 20px 16px;
+            gap: 24px;
+          }
+          .lp-book-panel-title { font-size: 22px; }
+          .lp-book-panel-desc { font-size: 13px; }
         }
       `}</style>
 
@@ -420,7 +506,7 @@ const BentoShowcase = () => {
                   >
                     <i className={`fa-solid ${tab.icon}`} />
                   </span>
-                  {tab.label}
+                  <span>{tab.label}</span>
                 </button>
               ))}
             </div>
@@ -496,4 +582,3 @@ const BentoShowcase = () => {
 };
 
 export default BentoShowcase;
-

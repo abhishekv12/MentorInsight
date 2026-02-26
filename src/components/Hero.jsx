@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-// ============================================================
-// Hero.jsx — Refined Luxury Minimalism
-// Palette: Near-black (#0a0a0b) + warm off-white (#f5f0eb) + single accent (#4a4af4)
-// Font: Cormorant Garamond (display) + DM Mono (data) + Manrope (body)
-// ============================================================
-
 const ROLES = ["Students", "Faculty", "Institutions", "Mentors"];
 
 const Hero = () => {
@@ -33,13 +27,6 @@ const Hero = () => {
     }
     return () => clearTimeout(timeoutRef.current);
   }, [displayed, typing, roleIdx]);
-
-  const STATS = [
-    { val: "10K+", label: "Students" },
-    { val: "500+", label: "Faculty" },
-    { val: "80+",  label: "Colleges" },
-    { val: "4.9",  label: "Rating" },
-  ];
 
   return (
     <>
@@ -82,7 +69,6 @@ const Hero = () => {
           overflow: hidden;
         }
 
-        /* Subtle noise texture */
         .lp-hero::before {
           content: '';
           position: absolute;
@@ -93,7 +79,6 @@ const Hero = () => {
           opacity: 0.6;
         }
 
-        /* Single glow — not rainbow */
         .lp-hero-glow {
           position: absolute;
           width: 800px; height: 500px;
@@ -142,7 +127,7 @@ const Hero = () => {
         /* Main heading */
         .lp-h1 {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(52px, 5.5vw, 88px);
+          font-size: clamp(40px, 5.5vw, 88px);
           font-weight: 600;
           line-height: 1.02;
           letter-spacing: -0.02em;
@@ -161,14 +146,15 @@ const Hero = () => {
           align-items: baseline;
           gap: 14px;
           margin-bottom: 28px;
-          height: clamp(56px, 6vw, 96px)
+          min-height: clamp(50px, 6vw, 96px);
           overflow: hidden;
           opacity: 0;
           animation: fadeUp 0.8s ease 0.3s forwards;
+          flex-wrap: wrap;
         }
         .lp-typewriter-for {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(52px, 5.5vw, 88px);
+          font-size: clamp(40px, 5.5vw, 88px);
           font-weight: 400;
           color: var(--muted-2);
           line-height: 1.02;
@@ -177,7 +163,7 @@ const Hero = () => {
         }
         .lp-typewriter {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(52px, 4.2vw, 88px);
+          font-size: clamp(40px, 4.2vw, 88px);
           font-weight: 700;
           color: var(--cream);
           line-height: 1.02;
@@ -205,7 +191,6 @@ const Hero = () => {
           animation: fadeUp 0.8s ease 0.4s forwards;
         }
 
-        /* CTAs */
         .lp-ctas {
           display: flex;
           gap: 14px;
@@ -232,13 +217,6 @@ const Hero = () => {
           transition: all 0.22s ease;
           position: relative;
           overflow: hidden;
-        }
-        .lp-btn-primary::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: rgba(255,255,255,0);
-          transition: background 0.2s;
         }
         .lp-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,74,244,0.38); color: #fff; }
         .lp-btn-ghost {
@@ -427,11 +405,61 @@ const Hero = () => {
         @keyframes blink-slow { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.85)} }
         @keyframes float-bob  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
+        /* ─── RESPONSIVE ──────────────── */
         @media(max-width:1000px) {
-          .lp-hero-inner { grid-template-columns: 1fr; }
+          .lp-hero-inner { grid-template-columns: 1fr; gap: 0; }
           .lp-visual { display: none; }
           .lp-stats-inner { grid-template-columns: repeat(2,1fr); }
           .lp-stat-item:nth-child(2) { border-right: none; }
+          .lp-stat-item:nth-child(3) { border-top: 1px solid var(--rule); }
+          .lp-stat-item:nth-child(4) { border-top: 1px solid var(--rule); border-right: none; }
+        }
+
+        @media(max-width:600px) {
+          .lp-hero {
+            padding: 100px 5vw 60px;
+            min-height: 100svh;
+          }
+          .lp-eyebrow {
+            font-size: 9px;
+            margin-bottom: 20px;
+          }
+          .lp-h1 {
+            font-size: clamp(36px, 10vw, 52px);
+            margin-bottom: 4px;
+          }
+          .lp-typewriter-row {
+            gap: 8px;
+            margin-bottom: 20px;
+            min-height: auto;
+          }
+          .lp-typewriter-for {
+            font-size: clamp(32px, 9vw, 52px);
+          }
+          .lp-typewriter {
+            font-size: clamp(32px, 9vw, 52px);
+          }
+          .lp-sub {
+            font-size: 14px;
+            line-height: 1.75;
+            margin-bottom: 32px;
+          }
+          .lp-ctas {
+            flex-direction: column;
+            gap: 10px;
+          }
+          .lp-btn-primary,
+          .lp-btn-ghost {
+            width: 100%;
+            justify-content: center;
+            padding: 14px 20px;
+          }
+          .lp-stats-inner {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .lp-stat-val { font-size: 26px; }
+          .lp-stat-lbl { font-size: 8px; }
+          .lp-stats-bar { padding: 16px 5vw; }
         }
       `}</style>
 
@@ -478,7 +506,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT: mockup */}
+          {/* RIGHT: mockup — hidden on mobile via CSS */}
           <div className="lp-visual">
             <div className="lp-float lp-float-1">
               <span className="lp-float-icon" style={{ color: "#4a4af4" }}>
@@ -561,4 +589,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

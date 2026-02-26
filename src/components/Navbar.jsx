@@ -19,27 +19,20 @@ const Navbar = () => {
     const unsub = onAuthStateChanged(auth, async (cur) => {
       if (cur) {
         setUser(cur);
-
-        // ── FIX: check localStorage FIRST (instant, no flash) ──
         if (localStorage.getItem("adminAuth") === "true") {
           setUserRole("admin"); return;
         }
         if (localStorage.getItem("facultyAuth") === "true") {
           setUserRole("faculty"); return;
         }
-
-        // ── Then try the API for students ──
         try {
           const res = await axios.get(`${API_URL}/api/users/${cur.uid}`);
           if (res.data?.role) { setUserRole(res.data.role); return; }
         } catch {}
-
-        // ── Final fallback: check by email in case uid mismatched ──
         try {
           const res = await axios.get(`${API_URL}/api/users/check-email/${cur.email}`);
           if (res.data?.role) setUserRole(res.data.role);
         } catch {}
-
       } else {
         setUser(null);
         setUserRole(null);
@@ -67,6 +60,12 @@ const Navbar = () => {
 
   /* ── Close mobile on route change ─────── */
   useEffect(() => { setMobileOpen(false); setLoginOpen(false); }, [location.pathname]);
+
+  /* ── Prevent body scroll when mobile menu open ── */
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -185,7 +184,6 @@ const Navbar = () => {
           background:var(--accent); border-radius:2px;
         }
 
-        /* Dashboard pill — colored by role */
         .mmmp-dash-link {
           font-family:'Manrope',sans-serif; font-size:11.5px; font-weight:700;
           letter-spacing:0.05em; text-transform:uppercase; text-decoration:none;
@@ -198,7 +196,6 @@ const Navbar = () => {
 
         .mmmp-user-row { display:flex; align-items:center; gap:10px; }
 
-        /* Role badge chip */
         .mmmp-role-badge {
           padding:3px 9px; border-radius:100px;
           font-family:'DM Mono',monospace; font-size:9px;
@@ -211,7 +208,7 @@ const Navbar = () => {
         }
         .mmmp-user-dot {
           width:6px; height:6px; border-radius:50%; background:#10b981;
-          animation:nav-pulse 3s ease-in-out infinite;
+          animation:nav-pulse 3s ease-in-out infinite; flex-shrink:0;
         }
         @keyframes nav-pulse {
           0%,100% { box-shadow:0 0 0 2px rgba(16,185,129,.2); }
@@ -222,7 +219,7 @@ const Navbar = () => {
           font-family:'Manrope',sans-serif; font-size:11.5px; font-weight:600;
           letter-spacing:0.04em; text-transform:uppercase; color:var(--muted);
           background:none; border:1px solid var(--rule); border-radius:5px;
-          padding:7px 16px; cursor:pointer; transition:all 0.18s;
+          padding:7px 16px; cursor:pointer; transition:all 0.18s; white-space:nowrap;
         }
         .mmmp-btn-logout:hover { color:var(--cream-2); border-color:rgba(245,240,235,.2); }
 
@@ -233,6 +230,7 @@ const Navbar = () => {
           background:var(--accent); border:none; border-radius:5px;
           padding:8px 20px; cursor:pointer;
           display:flex; align-items:center; gap:8px; transition:all 0.2s;
+          white-space:nowrap;
         }
         .mmmp-btn-login:hover { background:#3b3bdc; transform:translateY(-1px); box-shadow:0 6px 20px rgba(74,74,244,.35); }
         .mmmp-btn-login i { font-size:10px; transition:transform 0.2s; }
@@ -270,56 +268,82 @@ const Navbar = () => {
         }
         .mmmp-dropdown-arrow { margin-left:auto; font-size:9px; color:var(--ink-3); }
 
+        /* ─── Hamburger ─── */
         .mmmp-hamburger {
           display:none; flex-direction:column; gap:4.5px;
-          background:none; border:none; cursor:pointer; padding:6px; margin-left:12px;
+          background:none; border:none; cursor:pointer; padding:8px; margin-left:12px;
+          -webkit-tap-highlight-color: transparent;
         }
         .mmmp-hamburger span {
           display:block; width:22px; height:1.5px;
           background:var(--muted); border-radius:2px; transition:all 0.22s;
         }
-        .mmmp-hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+        .mmmp-hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); background:var(--cream-2); }
         .mmmp-hamburger.open span:nth-child(2) { opacity:0; }
-        .mmmp-hamburger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+        .mmmp-hamburger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); background:var(--cream-2); }
 
+        /* ─── Mobile drawer ─── */
         .mmmp-mobile-drawer {
           position:fixed; inset:62px 0 0 0;
-          background:rgba(10,10,11,.96); backdrop-filter:blur(18px);
-          -webkit-backdrop-filter:blur(18px); border-top:1px solid var(--rule);
+          background:rgba(10,10,11,.97); backdrop-filter:blur(20px);
+          -webkit-backdrop-filter:blur(20px); border-top:1px solid var(--rule);
           z-index:999; display:flex; flex-direction:column;
-          padding:28px 7vw 40px; gap:4px; animation:nav-drop 0.2s ease;
+          padding:20px 5vw 40px; overflow-y:auto; animation:nav-drop 0.2s ease;
         }
         .mmmp-mobile-link {
           font-family:'Manrope',sans-serif; font-size:18px; font-weight:600;
-          color:var(--muted); text-decoration:none; padding:14px 0;
+          color:var(--muted); text-decoration:none; padding:16px 0;
           border-bottom:1px solid var(--rule); transition:color 0.15s;
           display:flex; align-items:center; justify-content:space-between;
+          -webkit-tap-highlight-color: transparent;
         }
         .mmmp-mobile-link:hover, .mmmp-mobile-link.active { color:var(--cream); }
         .mmmp-mobile-actions { margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+
+        /* User info section in mobile */
+        .mmmp-mobile-user-info {
+          display:flex; align-items:center; gap:12px;
+          padding:16px 0; border-bottom:1px solid var(--rule); margin-bottom:4px;
+        }
+        .mmmp-mobile-user-text { display:flex; flex-direction:column; gap:4px; }
+        .mmmp-mobile-user-name {
+          font-family:'Manrope',sans-serif; font-size:14px; font-weight:700; color:var(--cream);
+        }
+        .mmmp-mobile-user-role {
+          font-family:'DM Mono',monospace; font-size:9px; color:var(--muted);
+          letter-spacing:0.08em; text-transform:uppercase;
+        }
+
         .mmmp-mobile-btn-primary {
           display:flex; align-items:center; justify-content:center; gap:9px;
-          padding:14px; background:var(--accent); color:#fff; border:none; border-radius:6px;
+          padding:16px; background:var(--accent); color:#fff; border:none; border-radius:6px;
           font-family:'Manrope',sans-serif; font-size:13px; font-weight:700;
           letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; text-decoration:none;
-          transition:background 0.18s;
+          transition:background 0.18s; -webkit-tap-highlight-color: transparent;
         }
         .mmmp-mobile-btn-primary:hover { background:#3b3bdc; }
         .mmmp-mobile-btn-ghost {
           display:flex; align-items:center; justify-content:center; gap:9px;
-          padding:14px; background:transparent; color:var(--muted);
+          padding:16px; background:transparent; color:var(--muted);
           border:1px solid var(--rule); border-radius:6px;
           font-family:'Manrope',sans-serif; font-size:13px; font-weight:600;
           letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; text-decoration:none;
-          transition:all 0.18s;
+          transition:all 0.18s; -webkit-tap-highlight-color: transparent;
         }
         .mmmp-mobile-btn-ghost:hover { color:var(--cream-2); border-color:rgba(245,240,235,.2); }
 
+        /* ─── Breakpoints ─── */
         @media(max-width:768px) {
           .mmmp-links   { display:none; }
           .mmmp-actions { display:none; }
           .mmmp-hamburger { display:flex; }
           .mmmp-nav { padding:0 5vw; }
+        }
+
+        /* Extra small: shrink logo text */
+        @media(max-width:380px) {
+          .mmmp-logo-name { font-size:17px; }
+          .mmmp-logo-name span { display:none; }
         }
       `}</style>
 
@@ -336,7 +360,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Center links */}
+          {/* Center links — desktop only */}
           <ul className="mmmp-links">
             {NAV_LINKS.map((l) => (
               <li key={l.to}>
@@ -345,8 +369,6 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-
-            {/* Dashboard pill — only when logged in */}
             {user && userRole && (
               <li>
                 <Link
@@ -365,12 +387,11 @@ const Navbar = () => {
             )}
           </ul>
 
-          {/* Right actions */}
+          {/* Right actions — desktop only */}
           <div className="mmmp-actions">
             {user ? (
               <div className="mmmp-user-row">
                 <span className="mmmp-user-dot" />
-                {/* Role badge */}
                 {userRole && (
                   <span
                     className="mmmp-role-badge"
@@ -443,6 +464,21 @@ const Navbar = () => {
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="mmmp-mobile-drawer">
+          {/* User info if logged in */}
+          {user && (
+            <div className="mmmp-mobile-user-info">
+              <span className="mmmp-user-dot" />
+              <div className="mmmp-mobile-user-text">
+                <span className="mmmp-mobile-user-name">
+                  {user.displayName ? user.displayName.split(" ")[0] : "User"}
+                </span>
+                {userRole && (
+                  <span className="mmmp-mobile-user-role">{userRole}</span>
+                )}
+              </div>
+            </div>
+          )}
+
           {NAV_LINKS.map((l) => (
             <Link key={l.to} to={l.to}
               className={`mmmp-mobile-link${isActive(l.to) ? " active" : ""}`}>
@@ -450,13 +486,15 @@ const Navbar = () => {
               <i className="fa-solid fa-arrow-right" style={{ fontSize:11, opacity:.3 }} />
             </Link>
           ))}
+
           {user && userRole && (
             <Link to={getDashboardLink()} className="mmmp-mobile-link"
               style={{ color: getRoleBadgeColor() }}>
               {getDashboardLabel()}
-              <i className="fa-solid fa-arrow-right" style={{ fontSize:11, opacity:.3 }} />
+              <i className="fa-solid fa-arrow-right" style={{ fontSize:11, opacity:.5 }} />
             </Link>
           )}
+
           <div className="mmmp-mobile-actions">
             {user ? (
               <button className="mmmp-mobile-btn-ghost" onClick={handleLogout}>
@@ -483,4 +521,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
