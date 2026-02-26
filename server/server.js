@@ -26,9 +26,8 @@ const transporter = nodemailer.createTransport({
 
 // ----------------------------------------------------
 // 1. CONNECT TO MONGODB
-// ----------------------------------------------------
 mongoose
-  .connect("mongodb://127.0.0.1:27017/mmmp_portal")
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch((err) => console.error("❌ MongoDB Error:", err));
 
