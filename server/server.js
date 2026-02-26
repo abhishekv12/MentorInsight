@@ -8,7 +8,8 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://mentor-insight.vercel.app'
+    'https://mentor-insight.vercel.app',
+    'https://mentorinsight.vercel.app'
   ],
   credentials: true
 }));
