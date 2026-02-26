@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./StudentDetailExam.css";
 import StudentProfileForm from "./StudentProfileForm";
-import StudentInsightPanel from "./StudentInsightPanel";
+import StudentInsightPanel from "./Studentinsightpanel";
 import API_URL from "../../config";
 
 const StudentDetailExam = ({ student, batch, onBack, onUpdate, sessions }) => {
