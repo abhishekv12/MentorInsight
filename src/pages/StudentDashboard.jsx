@@ -20,7 +20,7 @@ import {
 } from "chart.js";
 import { Bar, Line, Pie, Doughnut, Radar } from "react-chartjs-2";
 import "./StudentDashboard.css";
-import TodoWidget from "./TodoWidget";
+import TodoWidget from "./Todowidget";
 import NotificationBell from "./NotificationBell";
 import DocumentVault from "./DocumentVault";
 import CertificationsWidget from "./CertificationsWidget";
