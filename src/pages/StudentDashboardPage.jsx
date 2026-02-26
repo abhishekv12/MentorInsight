@@ -29,7 +29,7 @@ import Dashboardfooter from "./Dashboardfooter";
 import Learninghub from "./Learninghub";
 import Studentdashboardshowcase from "./Studentdashboardshowcase";
 import "./student-learning.css";
-import FacultyReviewStudent from "../components/FacultyReviewStudent";
+import FacultyReviewStudent from "../components/Facultyreviewstudent";
 import "../components/faculty-review.css";
 
 // Register ChartJS components
