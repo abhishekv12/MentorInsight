@@ -31,6 +31,7 @@ import Studentdashboardshowcase from "./Studentdashboardshowcase";
 import "./student-learning.css";
 import FacultyReviewStudent from "../components/Facultyreviewstudent";
 import "../components/faculty-review.css";
+import "./StudentDashboard-mobile.css";
 
 // Register ChartJS components
 ChartJS.register(
