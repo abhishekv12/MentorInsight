@@ -17,7 +17,7 @@ import StudentLogin from "./pages/StudentLogin";
 import StudentRegister from "./pages/StudentRegister";
 import FacultyLogin from "./pages/FacultyLogin";
 import FacultyRegister from "./pages/FacultyRegister";
-import StudentDashboard from "./pages/StudentDashboard";
+import StudentDashboard from "./pages/StudentDashboardPage";
 import FacultyDashboard from "./pages/FacultyDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
