@@ -19,7 +19,7 @@ import FacultyLogin from "./pages/FacultyLogin";
 import FacultyRegister from "./pages/FacultyRegister";
 import StudentDashboard from "./pages/StudentDashboard";
 import FacultyDashboard from "./pages/FacultyDashboard";
-import AdminDashboard from "./pages/Admin";
+import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import LoginSelection from "./pages/LoginSelection";
 import FacultySelection from "./pages/FacultySelection";
