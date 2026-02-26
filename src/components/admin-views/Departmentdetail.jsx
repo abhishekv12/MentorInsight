@@ -88,7 +88,7 @@ const DepartmentDetail = () => {
   const handleAssignMentor = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('${API_URL}/api/admin/assign-mentor', { ...assignData, collegeName });
+      await axios.post(`${API_URL}/api/admin/assign-mentor`, { ...assignData, collegeName });
       alert(`✅ Mentor Assigned! Email sent to ${assignData.mentorEmail}`);
       setShowAssignModal(false);
       fetchDepartmentData();
@@ -124,7 +124,7 @@ const DepartmentDetail = () => {
     setReviewPosting(true);
     try {
       const teacher = teachers.find(t => t._id === campaignForm.teacherId);
-      await axios.post('${API_URL}/api/admin/review-campaigns', {
+      await axios.post(`${API_URL}/api/admin/review-campaigns`, {
         ...campaignForm,
         teacherName:  teacher?.name || campaignForm.teacherName,
         batchId:      reviewBatch._id,
