@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Admin.css";
-import FacultyReviewAdmin from "../components/admin-views/FacultyReviewAdmin";
+import FacultyReviewAdmin from "../components/admin-views/Facultyreviewadmin";
 import "../components/faculty-review.css";
 import API_URL from "/src/config";
 
