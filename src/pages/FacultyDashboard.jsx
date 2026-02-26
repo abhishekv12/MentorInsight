@@ -7,11 +7,11 @@ import StudentDetailExam from "../components/StudentDetailExam";
 import BatchPromotion from "../components/Batchpromotion";
 import SessionAttendeesModal from "../components/SessionAttendeesModal";
 import FacultyBroadcastView from "./Facultybroadcastview";
-import FacultyDashboardFooter from "./FacultyDashboardFooter";
-import FacultyDashboardShowcase from "./FacultyDashboardShowcase";
-import FacultyShareHub from "./FacultyShareHub";
+import FacultyDashboardFooter from "./Facultydashboardfooter";
+import FacultyDashboardShowcase from "./Facultydashboardshowcase";
+import FacultyShareHub from "./Facultysharehub";
 import "./faculty-additions.css";
-import API_URL from "/src/config";
+import API_URL from "../config";
 
 function FacultyDashboard() {
   // --- NAVIGATION STATE ---
