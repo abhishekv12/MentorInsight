@@ -9,10 +9,19 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'https://mentor-insight.vercel.app',
-    'https://mentorinsight.vercel.app'
+    'https://mentorinsight.vercel.app',
+    /^https:\/\/.*\.vercel\.app$/,   // any vercel preview URLs
   ],
   credentials: true
 }));
+
+// Add this SEPARATELY for mobile app (no credentials needed):
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
